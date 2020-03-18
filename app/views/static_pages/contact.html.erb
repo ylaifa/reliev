@@ -1,1 +1,20 @@
 <h1>Contact the Reliev Team</h1>
+
+<p>email : contact@reliev.com</p>
+<p>phone : +331 10 10 10 10</p>
+
+<%= form_for :person do |f| %>
+  First name: <%= f.text_field :first_name %><br />
+  Last name : <%= f.text_field :last_name %><br />
+  Object : <%= f.text_field :object %><br />
+  Request : <%= f.text_area :message %><br />
+  <%= f.submit %>
+<% end %>
+
+<br/><br/>
+<p># If we don't want form: </p>
+
+<br/>
+<p>To get more informations about us, initiate a collaboration, share an idea or report a problem, here are the contact informations about the team.</p>
+<p>email : contact@reliev.com</p>
+<p>phone : +331 10 10 10 10</p>
