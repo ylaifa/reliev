@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :masseurs
   devise_for :companies
   devise_for :employees
   
