@@ -19,9 +19,10 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 
-gem 'rubocop'
+gem 'devise'
 gem 'dotenv-rails'
 gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
+gem 'rubocop'
 gem 'table_print'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
