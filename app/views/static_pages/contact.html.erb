@@ -3,13 +3,19 @@
 <p>email : contact@reliev.com</p>
 <p>phone : +331 10 10 10 10</p>
 
-<%= form_for :person do |f| %>
-  First name: <%= f.text_field :first_name %><br />
-  Last name : <%= f.text_field :last_name %><br />
-  Object : <%= f.text_field :object %><br />
-  Request : <%= f.text_area :message %><br />
-  <%= f.submit %>
-<% end %>
+<form action="">
+  <label for="first_name">First name:</label><br>
+  <input type="text" id="first_name" name="first_name"><br>
+  <label for="last_name">Last name:</label><br>
+  <input type="text" id="last_name" name="last_name"><br><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br><br>
+  <label for="object">Object:</label><br>
+  <input type="text" id="object" name="object"><br><br>
+  <label for="message">Message:</label><br>
+  <textarea rows="4" cols="50" name="comment" form="usrform">Enter text here...</textarea>
+  <input type="submit" value="Submit">
+</form> 
 
 <br/><br/>
 <p># If we don't want form: </p>
