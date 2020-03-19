@@ -1,0 +1,16 @@
+<h2>Compléter votre profil</h2>
+
+<%= form_tag employee_profile_path, method: "PUT" do %>
+
+  <div class="form-group mb-2">
+    <%= label_tag 'Prénom : ' %>
+    <%= text_field_tag :first_name, params[:first_name], class: 'form-control', placeholder: 'Prénom' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'Nom : ' %>
+    <%= text_field_tag :last_name, params[:last_name], class: 'form-control', placeholder: 'Nom' %>
+  </div>
+
+  <%= submit_tag "Inscription", class: 'btn btn-success' %>
+<% end %>
