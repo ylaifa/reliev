@@ -1,0 +1,2 @@
+class MasseurController < ApplicationController
+end
