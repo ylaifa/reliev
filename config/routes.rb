@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-
+  devise_for :employees, controllers: { registrations: "registrations" }
   devise_for :masseurs
   devise_for :companies
-  devise_for :employees
+
+  resources  :employee_profiles, only: [:edit, :update, :show]
   
   root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
