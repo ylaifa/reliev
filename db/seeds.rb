@@ -10,6 +10,7 @@ require 'faker'
 
 Company.destroy_all
 Employee.destroy_all
+Masseur.destroy_all
 
 5.times do
   Company.create(
