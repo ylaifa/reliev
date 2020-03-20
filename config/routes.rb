@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :employees, controllers: { registrations: "registrations" }
+  devise_for :masseurs
   devise_for :companies
 
   resources  :employee_profiles, only: [:edit, :update, :show]

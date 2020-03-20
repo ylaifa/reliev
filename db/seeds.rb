@@ -33,3 +33,9 @@ end
   )
 end
 
+10.times do
+  Masseur.create(
+    email: Faker::Internet.email,
+    password: Faker::Internet.password(min_length: 6)
+  )
+end
