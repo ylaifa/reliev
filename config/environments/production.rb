@@ -93,7 +93,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Default mailer host
-  Rails.application.routes.default_url_options[:host] = 'https://reliev-prod.herokuapp.com/'
+  Rails.application.routes.default_url_options[:host] = 'https://reliev-prod.herokuapp.com'
 
 
 end
