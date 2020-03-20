@@ -1,2 +1,10 @@
-<h1>CompanyProfiles#edit</h1>
-<p>Find me in app/views/company_profiles/edit.html.erb</p>
+<h2>Complétez votre profil</h2>
+
+<%= form_with model: @company_profile do |f| %>
+
+  <div class="form-group mb-2">
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Nom' %>
+  </div>
+
+  <%= f.submit "Inscription", class: 'btn btn-success' %>
+<% end %>
