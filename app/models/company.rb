@@ -6,9 +6,9 @@ class Company < ApplicationRecord
 
   has_one :company_profile
 
-  after_create :set_profile
+  after_create :create_profile
 
-  def set_profile
+  def create_profile
     CompanyProfile.create(company: self)
   end
 end
