@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     elsif @masseur
       edit_masseur_profile_path(@masseur)
     elsif @company
-      edit_company_profile_path(@company)
+      edit_company_profile_path(@company.company_profile)
     end
   end
 end
