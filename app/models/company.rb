@@ -5,4 +5,10 @@ class Company < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :company_profile
+
+  after_create :set_profile
+
+  def set_profile
+    CompanyProfile.create(company: self)
+  end
 end
