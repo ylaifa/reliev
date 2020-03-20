@@ -5,9 +5,9 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :employee_profile, dependent: :destroy
 
-  after_create :set_profile
+  after_create :create_profile
 
-  def set_profile
+  def create_profile
     EmployeeProfile.create(employee: self)
   end
 end

@@ -6,6 +6,9 @@ class EmployeeProfilesController < ApplicationController
 
   def edit
     @employee_profile = EmployeeProfile.find_by(employee_id: params[:id])
+    if @employee_profile == nil
+      @employee_profile = EmployeeProfile.find(params[:id])
+    end
   end
 
   def update

@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  protected
+  private
 
   def after_sign_up_path_for(resource)
     if @employee
@@ -10,5 +10,4 @@ class RegistrationsController < Devise::RegistrationsController
       edit_company_profile_path(@company)
     end
   end
-
 end
