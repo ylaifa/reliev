@@ -1,6 +1,6 @@
 <h2>Complétez votre profil pour effectuer une réservation</h2>
 
-<%= form_with model: @employee_profile do |form| %>
+<%= form_with scope: :employee_profile, url: employee_profile_path, method: "patch" do |form| %>
 
   <div class="form-group mb-2">
     <%= form.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %>
