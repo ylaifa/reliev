@@ -1,0 +1,14 @@
+<h2>Complétez votre profil pour effectuer une réservation</h2>
+
+<%= form_for @employee_profile do |f| %>
+
+  <div class="form-group mb-2">
+    <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom' %>
+  </div>
+
+  <%= f.submit "Compléter son profil", class: 'btn btn-success' %>
+<% end %>

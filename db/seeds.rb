@@ -20,8 +20,16 @@ end
 
 30.times do
   Employee.create(
-    email: Faker::Internet.email,
+    email:    Faker::Internet.email,
     password: Faker::Internet.password(min_length: 6)
+  )
+end
+
+30.times do 
+  EmployeeProfile.create(
+    first_name: Faker::Name.first_name,
+    last_name:  Faker::Name.last_name,
+    employee:   Employee.all.sample
   )
 end
 
