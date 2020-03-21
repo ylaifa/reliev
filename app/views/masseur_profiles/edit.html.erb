@@ -1,0 +1,13 @@
+<h2>Complétez votre profil</h2>
+
+<%= form_with model: @masseur_profile do |f| %>
+
+  <div class="form-group mb-2">
+    Prénom : <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %><br/>
+    Nom : <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom' %><br/>
+    Tarif : <%= f.text_field :pricing, class: 'form-control', placeholder: 'Tarif' %><br/>
+    Description : <%= f.text_field :description, class: 'form-control', placeholder: 'Description' %><br/>
+  </div>
+
+  <%= f.submit "Valider mon profil", class: 'btn btn-success' %>
+<% end %>
