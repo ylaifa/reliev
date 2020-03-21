@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :employees, controllers: { registrations: "registrations" }
-  devise_for :masseurs
+  devise_for :masseurs,  controllers: { registrations: "registrations" }
   devise_for :companies, controllers: { registrations: "registrations" }
 
   resources  :masseur_profiles,  only: [:show, :edit, :update]
