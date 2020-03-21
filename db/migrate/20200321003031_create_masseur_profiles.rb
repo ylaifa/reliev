@@ -5,7 +5,7 @@ class CreateMasseurProfiles < ActiveRecord::Migration[5.2]
       t.string :last_name
       t.decimal :pricing
       t.text :description
-      t.belongs_to :company, index: true
+      t.belongs_to :masseur, index: true
 
       t.timestamps
     end
