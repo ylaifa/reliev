@@ -40,3 +40,13 @@ end
     password: Faker::Internet.password(min_length: 6)
   )
 end
+
+10.times do
+  MasseurProfile.create(
+    first_name: Faker::Name.first_name,
+    last_name:  Faker::Name.last_name,
+    pricing: rand(30..180),
+    description: Faker::ChuckNorris.fact,
+    masseur: Masseur.all.sample
+  )
+end
