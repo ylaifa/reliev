@@ -1,1 +1,3 @@
 <h1>Hello <%= @company_profile.name %></h1>
+<button> <%= link_to ("Se déconnecter", destroy_company_session_path, method: :delete) %></button>
+<button> <%= link_to "Editer mon profil", edit_company_registration_path %></button>
