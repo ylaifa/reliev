@@ -20,5 +20,5 @@ end
 private 
 
 def masseur_profile_params 
-  params.require(:masseur_profile).permit(:name)
+  params.require(:masseur_profile).permit(:first_name, :last_name, :pricing, :description)
 end
