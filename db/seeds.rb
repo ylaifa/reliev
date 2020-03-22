@@ -12,14 +12,14 @@ Company.destroy_all
 Employee.destroy_all
 Masseur.destroy_all
 
-Company.skip_callback(:create, :after, :welcome_send)
+# Company.skip_callback(:create, :after, :welcome_send)
 1.times do
   Company.create(
     email: Faker::Internet.email,
     password: "azerty"
   )
 end
-Company.set_callback(:create, :after, :welcome_send)
+# Company.set_callback(:create, :after, :welcome_send)
 
 Employee.skip_callback(:create, :after, :welcome_send)
 1.times do
