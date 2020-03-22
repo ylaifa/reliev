@@ -31,7 +31,7 @@ end
 Employee.set_callback(:create, :after, :welcome_send)
 
 Masseur.skip_callback(:create, :after, :welcome_send)
-10.times do
+15.times do
   Masseur.create(
     email: Faker::Internet.email,
     password: Faker::Internet.password(min_length: 6)
