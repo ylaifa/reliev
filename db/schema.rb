@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_21_003031) do
+ActiveRecord::Schema.define(version: 2020_03_23_170639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 2020_03_21_003031) do
     t.bigint "masseur_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "massage_types", default: [], array: true
+    t.string "time_slots", default: [], array: true
+    t.string "working_places", default: [], array: true
     t.index ["masseur_id"], name: "index_masseur_profiles_on_masseur_id"
   end
 
