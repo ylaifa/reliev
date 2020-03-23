@@ -39,3 +39,14 @@ Masseur.skip_callback(:create, :after, :welcome_send)
 end
 Masseur.set_callback(:create, :after, :welcome_send)
 
+MasseurProfile.all.each do |masseur_profile|
+  masseur_profile.update(
+    first_name:     Faker::Name.first_name,
+    last_name:      Faker::Name.last_name,
+    pricing:        Faker::Number.number(digits: 2),
+    description:    Faker::Lorem.paragraph(sentence_count: 4),
+    massage_types:  MasseurProfile::MASSAGE_TYPES.sample(3),
+    time_slots:     MasseurProfile::TIME_SLOTS.sample(5),
+    working_place:  MasseurProfile::WORKING_PLACES.sample
+  )
+end
