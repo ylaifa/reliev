@@ -46,7 +46,7 @@ MasseurProfile.all.each do |masseur_profile|
     pricing:        Faker::Number.number(digits: 2),
     description:    Faker::Lorem.paragraph(sentence_count: 4),
     massage_types:  MasseurProfile::MASSAGE_TYPES.sample(3),
-    time_slots:     MasseurProfile::TIME_SLOTS.sample(5),
+    time_slots:     MasseurProfile::TIME_SLOTS.take(5),
     working_place:  MasseurProfile::WORKING_PLACES.sample
   )
 end
