@@ -1,1 +1,14 @@
-<h1>Bonjour <%= @masseur_profile.first_name %></h1>
+<h1>Bonjour <%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %></h1>
+<h4>Description : <%= @masseur_profile.description %></h4>
+<h4>Prix : <%= @masseur_profile.pricing %></h4>
+<h4>Type(s) de massage proposé : 
+  <% @masseur_profile.massage_types.each do |massage_type| %>
+    <br>- <%= massage_type %>
+  <% end %>
+</h4>
+<h4>Disponibilitée(s) :
+  <% @masseur_profile.time_slots.each do |time_slot| %>
+    <br>- <%= time_slot %>
+  <% end %>
+</h4>
+<h4>Secteur d'activité : <%= @masseur_profile.working_place %></h4>
