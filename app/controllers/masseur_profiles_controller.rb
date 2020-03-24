@@ -1,4 +1,12 @@
 class MasseurProfilesController < ApplicationController
+  def index
+    if params[:query].present?
+      @masseur_profile = MasseurProfile.search(params[:query])
+    else
+      @masseur_profile = MasseurProfile.all
+    end
+  end
+
   def show
     @masseur_profile = MasseurProfile.find(params[:id])
   end
