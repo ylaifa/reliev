@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :masseurs,  controllers: { registrations: "registrations" }
   devise_for :companies, controllers: { registrations: "registrations" }
 
-  resources  :masseur_profiles,  only: [:show, :edit, :update]
+  resources  :masseur_profiles,  only: [:index, :show, :edit, :update]
   resources  :company_profiles,  only: [:show, :edit, :update]
   resources  :employee_profiles, only: [:show, :edit, :update]
 
