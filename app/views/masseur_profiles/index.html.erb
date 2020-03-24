@@ -1,0 +1,41 @@
+<p>Critères de recherche : <br></p>
+
+<% if params[:query].present?%>
+    <% params[:query].each do |query_param| %>
+        - <%= query_param %><br>
+    <% end %>
+    <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+<% else %>
+    <%= form_with url: masseur_profiles_path, method: :get, local: true do |f| %>
+    <p>Type(s) de massage(s) que vous souhaitez :<br></p>
+        <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+            <%= f.check_box(:query, {:multiple => true}, massage_type, nil) %><%= massage_type %><br>
+        <% end %>
+    <p><br>Lieu que vous souhaitez :<br></p>
+        <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
+            <%= f.check_box(:query, {:multiple => true}, working_place, nil) %><%= working_place %><br>
+        <% end %>
+        <%= f.submit "Recherche", class: 'btn btn-success' %>  <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+    <% end %>
+<% end %>
+   
+<% if @masseur_profiles.any? %>
+    <% @masseur_profiles.each do |masseur_profile| %>
+        <h3><%= masseur_profile.first_name %> <%= masseur_profile.last_name %> </h3>
+        <h4>Description : <%= masseur_profile.description %></h4>
+        <h4>Prix : <%= masseur_profile.pricing %></h4>
+        <h4>Type(s) de massage proposé : 
+        <% masseur_profile.massage_types.each do |massage_type| %>
+            <br>- <%= massage_type %>
+        <% end %>
+        </h4>
+        <h4>Disponibilitée(s) :
+        <% masseur_profile.time_slots.each do |time_slot| %>
+            <br>- <%= time_slot %>
+        <% end %>
+        </h4>
+        <h4>Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
+    <% end %>
+<% else %>
+    <h4>Aucun masseur ne correspond à votre recherche</h4>
+<% end %>
