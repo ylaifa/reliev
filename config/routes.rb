@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources  :masseur_profiles,  only: [:show, :edit, :update]
   resources  :company_profiles,  only: [:show, :edit, :update]
   resources  :employee_profiles, only: [:show, :edit, :update]
+
+  resources  :search, only: [:index]
   
   root 'welcome#index'
   get 'about',   to: 'static_pages#about'
