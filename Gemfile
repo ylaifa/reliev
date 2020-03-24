@@ -24,6 +24,7 @@ gem 'dotenv-rails'
 gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'rubocop'
 gem 'table_print'
+gem 'jquery-rails'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
