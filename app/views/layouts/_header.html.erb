@@ -1,33 +1,8 @@
 <!-- ========== HEADER ========== -->
-<header id="header" class="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md"
-  data-header-fix-moment="500"
-  data-header-fix-effect="slide">
-
-  <div class="u-header__section">
-    <!-- Topbar -->
-    <div class="container u-header__hide-content pt-2">
-      <div class="d-flex align-items-center">
-         <div class="ml-auto">
-           <!-- Links -->
-           <div class="d-none d-sm-inline-block ml-sm-auto">
-             <ul class="list-inline mb-0">
-               <li class="list-inline-item mr-0">
-                 <a class="u-header__navbar-link" href="">À propos</a>
-               </li>
-               <li class="list-inline-item mr-0">
-                 <a class="u-header__navbar-link" href="">Contact</a>
-               </li>
-             </ul>
-           </div>
-           <!-- End Links -->
-         </div>
-      </div>
-    </div>
-  <!-- End Topbar -->
-
+<header id="header" class="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md">
   <div id="logoAndNav" class="container">
     <!-- Nav -->
-      <nav class="js-mega-menu navbar navbar-expand-md u-header__navbar u-header__navbar--no-space">
+      <nav class="container js-mega-menu navbar navbar-expand-md u-header__navbar u-header__navbar--no-space fixed-top">
         <!-- Logo -->
           <%= link_to root_path, class: "navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-text" do %>
             <span class="u-header__navbar-brand-text">Reliev</span>
@@ -37,29 +12,45 @@
         <!-- Navigation -->
         <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
           <ul class="navbar-nav u-header__navbar-nav">
-            <!-- Masseurs panel -->
-            <li class="">
-              <%= link_to "Masseurs", root_path, class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
-            </li>
-            <!-- End Masseurs panel -->
-          
-            <!-- Employee account -->
-            <li class="nav-item u-header__nav-last-item">
-              <%= link_to "Compte salarié", employee_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
-            </li>
-            <!-- End Employee account -->
+            <!-- Logged Employee button -->
+            <% if employee_signed_in? %>
+              <%= link_to "Mon espace",  'javascript:;', class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              <%= link_to "Déconnexion", destroy_employee_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover" %>        
+            <!-- Logged Masseur button -->
+            <% elsif masseur_signed_in? %>
+              <%= link_to "Mon espace",  'javascript:;', class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              <%= link_to(destroy_masseur_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
+                Déconnexion
+              <% end %>
+            <!-- Logged Company button -->
+            <% elsif company_signed_in? %>
+              <%= link_to "Mon espace",  'javascript:;', class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              <%= link_to "Déconnexion", destroy_employee_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover" %>        
+            <% else %>
+              <!-- Masseurs panel -->
+              <li>
+                <%= link_to "Masseurs", root_path, class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              </li>
+              <!-- End Masseurs panel -->
+            
+              <!-- Employee account -->
+              <li class="nav-item u-header__nav-last-item">
+                <%= link_to "Compte salarié", employee_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
+              </li>
+              <!-- End Employee account -->
 
-            <!-- Masseur account up-->
-            <li class="nav-item u-header__nav-last-item">
-              <%= link_to "Compte Masseur", masseur_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
-            </li>
-            <!-- End Compte Masseur -->            
-          
-            <!-- Company account -->
-            <li class="nav-item u-header__nav-last-item">
-              <%= link_to "Compte entreprise", company_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
-            </li>
-            <!-- End Company account -->
+              <!-- Masseur account up-->
+              <li class="nav-item u-header__nav-last-item">
+                <%= link_to "Compte Masseur", masseur_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
+              </li>
+              <!-- End Compte Masseur -->            
+            
+              <!-- Company account -->
+              <li class="nav-item u-header__nav-last-item">
+                <%= link_to "Compte entreprise", company_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
+              </li>
+              <!-- End Company account -->
+            <% end %>
           </ul>
         </div>
         <!-- End Navigation -->
