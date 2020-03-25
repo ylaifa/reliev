@@ -16,11 +16,15 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+      <%= render 'layouts/header' %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>  
+
+      <div id="content-wrap">
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
 
     <!-- JS Plugins Init. -->
     <script>
