@@ -48,12 +48,12 @@
   </div>
   <div class="bg-light">
     <div class="container space-2">
-      <h3 class="mb-5">Complétez votre profil afin de pouvoir effectuer une réservation</h3>
+      <h3 class="mb-5">Complétez votre profil afin de pouvoir effectuer une réservation.</h3>
       <!-- Personal Info Form -->
       <%= form_for @employee_profile, class: "js-validate" do |f| %>
         <div class="row">
           <!-- Input -->
-          <div class="col-sm-6 mb-6">
+          <div class="col-sm-6 mb-3">
             <div class="js-form-message">
               <label id="nameLabel" class="form-label">
                 Prénom
@@ -67,7 +67,9 @@
             </div>
           </div>
           <!-- End Input -->
+        </div>
 
+        <div class="row">
           <!-- Input -->
           <div class="col-sm-6 mb-6">
             <div class="js-form-message">
