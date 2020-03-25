@@ -1,25 +1,61 @@
-<h2>Change your password</h2>
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+  <!-- Form -->
+  <div class="d-flex align-items-center position-relative height-lg-100vh">
+    <div class="col-lg-5 col-xl-4 d-none d-lg-flex align-items-center gradient-half-primary-v1 height-lg-100vh px-0">
+      <div class="w-100 p-5">
+      </div>
+    </div>
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-md-8 col-lg-7 col-xl-6 offset-md-2 offset-lg-2 offset-xl-3 space-3 space-lg-0">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+            <!-- Title -->
+            <div class="mb-7">
+              <h1 class="h3 text-primary font-weight-normal mb-0">Modifier mon mot de passe</h1>
+              <p>Entrez votre nouveau mot de passe.</p>
+            </div>
+            <!-- End Title -->
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+            <!-- Form Group -->
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :reset_password_token %>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group">
+              <div class="field">
+                <%= f.label :password, class: "form-label" %>
+                <%= f.password_field :password, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group">   
+              <div class="field">
+                <%= f.label :comfirmer_mot_de_passe, class: "form-label" %>
+                <%= f.password_field :password_confirmation, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Button -->
+            <div class="col-7 col-sm-6 text-right">
+              <div class="actions">
+                <%= f.submit "Modifier", class: "btn btn-primary transition-3d-hover" %>
+              </div>
+            </div>
+          </div>
+          <!-- End Button -->
+          
+        </div>
+      </div>
+    </div>
   </div>
+  <% end %>
+  <!-- End Form -->
+</main>
+<!-- ========== END MAIN ========== -->
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
