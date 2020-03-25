@@ -22,8 +22,8 @@
             <%= render "devise/shared/error_messages", resource: resource %>
             <div class="js-form-message form-group">
               <div class="field">
-                <%= f.label :email_address, class: "form-label"%>
-                <%= f.email_field :email, class: "form-control", placeholder: "Email address", autofocus: true, autocomplete: "email" %>
+                <%= f.label :email, class: "form-label"%>
+                <%= f.email_field :email, class: "form-control", placeholder: "Adresse email", autofocus: true, autocomplete: "email" %>
               </div>
             </div>
             <!-- End Form Group -->
@@ -31,8 +31,8 @@
             <!-- Form Group -->
             <div class="js-form-message form-group">
               <div class="field">
-                <%= f.label :password, class: "form-label" %>
-                <%= f.password_field :password, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
+                <%= f.label :mot_de_passe, class: "form-label" %>
+                <%= f.password_field :mot_de_passe, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
               </div>
             </div>
             <!-- End Form Group -->
