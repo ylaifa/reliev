@@ -1,14 +1,89 @@
-<h2>Complétez votre profil pour effectuer une réservation</h2>
+<main id="content" role="main">
+  <!-- Breadcrumb Section -->
+  <div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+          <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <li class="breadcrumb-item"><%= link_to "Acceuil", root_path, class: "breadcrumb-link" %></li>
+              <li class="breadcrumb-item"><%= link_to "Profil", employee_profile_path, class: "breadcrumb-link" %></li>
+              <li class="breadcrumb-item active" aria-current="page">Compléter son profil</li>
+            </ol>
+            <!-- End Breadcrumb -->
 
-<%= form_for @employee_profile do |f| %>
+            <!-- Breadcrumb Nav Toggle Button -->
+            <div class="d-lg-none">
+              <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                      aria-label="Toggle navigation"
+                      aria-expanded="false"
+                      aria-controls="breadcrumbNavBar"
+                      data-toggle="collapse"
+                      data-target="#breadcrumbNavBar">
+                <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                  <span class="u-hamburger__inner"></span>
+                </span>
+              </button>
+            </div>
+            <!-- End Breadcrumb Nav Toggle Button -->
+          </div>
+        </div>
 
-  <div class="form-group mb-2">
-    <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %>
+        <div class="col-lg-7 order-lg-1">
+          <!-- User Info -->
+          <div class="media d-block d-sm-flex align-items-sm-center">
+            <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+              <img class="img-fluid rounded-circle" src="https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png" alt="Default Profile Picture">
+            </div>
+            <div class="media-body">
+              <h1 class="h3 text-white font-weight-medium mb-1">Complétez ou modifiez votre profil</h1>
+              <span class="d-block text-white"><%= @employee_profile.employee.email %></span>
+            </div>
+          </div>
+          <!-- End User Info -->
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="bg-light">
+    <div class="container space-2">
+      <h3 class="mb-5">Compléter votre profil afin de pouvoir effectuer une réservation</h3>
+      <!-- Personal Info Form -->
+      <%= form_for @employee_profile, class: "js-validate" do |f| %>
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-6 mb-6">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Prénom
+                <span class="text-danger">*</span>
+              </label>
 
-  <div class="form-group">
-    <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom' %>
+              <div class="form-group">
+                <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %>
+                <small class="form-text text-muted">Affiché sur votre profil public, les notifications et autres lieux.</small>
+              </div>
+            </div>
+          </div>
+          <!-- End Input -->
+
+          <!-- Input -->
+          <div class="col-sm-6 mb-6">
+            <div class="js-form-message">
+              <label id="usernameLabel" class="form-label">
+                Nom
+                <span class="text-danger">*</span>
+              </label>
+              <div class="form-group">
+                <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom' %>
+              </div>
+            </div>
+          </div>
+          <!-- End Input -->
+        </div>
+        <%= f.submit "Compléter son profil", class: "btn btn-sm btn-primary transition-3d-hover mr-1" %>
+      <% end %>
+    </div>
   </div>
-
-  <%= f.submit "Compléter son profil", class: 'btn btn-success' %>
-<% end %>
+</main>
