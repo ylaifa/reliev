@@ -34,6 +34,5 @@
 //= require jquery.validate.min.js
 //= require popper.min.js
 //= require slick.js
-//= require svg-injector.min.js
+//= require svg-injector.map.js
 //= require typed.min.js
-    
