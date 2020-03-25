@@ -6,8 +6,22 @@
     Prénom : <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %><br/>
     Nom : <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom' %><br/>
     Tarif : <%= f.text_field :pricing, class: 'form-control', placeholder: 'Tarif' %><br/>
-    Description : <%= f.text_field :description, class: 'form-control', placeholder: 'Description' %><br/>
+    Description : <%= f.text_field :description, class: 'form-control', placeholder: 'Description' %><br>
+    Type(s) de massage(s) que vous souhaitez proposer : <br>
+      <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+        <%= f.check_box(:massage_types, {:multiple => true}, massage_type, nil) %><%= massage_type %><br>
+      <% end %>
+    <br>
+    Vos disponibilités : <br>
+      <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
+        <%= f.check_box(:time_slots, {:multiple => true}, time_slot, nil) %><%= time_slot %><br>
+      <% end %>
+    <br>
+    Votre secteur d'activité : <br>
+      <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
+        <%= f.radio_button(:working_place, working_place) %><%= working_place %><br>
+      <% end %>
   </div>
-
+  <br>
   <%= f.submit "Valider mon profil", class: 'btn btn-success' %>
 <% end %>

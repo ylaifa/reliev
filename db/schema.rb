@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_21_003031) do
+ActiveRecord::Schema.define(version: 2020_03_23_210602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street_number"
+    t.string "route"
+    t.string "locality"
+    t.string "administrative_area_level_1"
+    t.string "postal_code"
+    t.string "country"
+    t.bigint "company_profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_profile_id"], name: "index_addresses_on_company_profile_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -59,11 +72,14 @@ ActiveRecord::Schema.define(version: 2020_03_21_003031) do
   create_table "masseur_profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.decimal "pricing"
+    t.integer "pricing"
     t.text "description"
     t.bigint "masseur_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "massage_types", default: [], array: true
+    t.string "time_slots", default: [], array: true
+    t.string "working_place"
     t.index ["masseur_id"], name: "index_masseur_profiles_on_masseur_id"
   end
 

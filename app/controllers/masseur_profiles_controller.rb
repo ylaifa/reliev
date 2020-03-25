@@ -1,4 +1,12 @@
 class MasseurProfilesController < ApplicationController
+  def index
+    if params[:query].present?
+      @masseur_profiles = MasseurProfile.search(params[:query])
+    else
+      @masseur_profiles = MasseurProfile.all
+    end
+  end
+
   def show
     @masseur_profile = MasseurProfile.find(params[:id])
   end
@@ -15,10 +23,10 @@ class MasseurProfilesController < ApplicationController
       render :edit, alert: "Veuillez rentrer des champs valides."
     end
   end
-end
 
 private 
 
-def masseur_profile_params 
-  params.require(:masseur_profile).permit(:first_name, :last_name, :pricing, :description)
+  def masseur_profile_params 
+    params.require(:masseur_profile).permit(:first_name, :last_name, :pricing, :description, :working_place, massage_types: [], time_slots: [])
+  end
 end
