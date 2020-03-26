@@ -1,14 +1,77 @@
-<h2>Complétez votre profil pour effectuer une réservation</h2>
+<main id="content" role="main">
+  <!-- Breadcrumb Section -->
+  <div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+          <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <li class="breadcrumb-item"><%= link_to "Acceuil", root_path, class: "breadcrumb-link" %></li>
+              <li class="breadcrumb-item"><%= link_to "Profil", employee_profile_path, class: "breadcrumb-link" %></li>
+              <li class="breadcrumb-item active" aria-current="page">Compléter son profil</li>
+            </ol>
+            <!-- End Breadcrumb -->
+          </div>
+        </div>
 
-<%= form_for @employee_profile do |f| %>
-
-  <div class="form-group mb-2">
-    <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %>
+        <div class="col-lg-7 order-lg-1">
+          <!-- User Info -->
+          <div class="media d-block d-sm-flex align-items-sm-center">
+            <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+              <img class="img-fluid rounded-circle" src="https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png" alt="Default Profile Picture">
+            </div>
+            <div class="media-body">
+              <h1 class="h3 text-white font-weight-medium mb-1">Complétez ou modifiez votre profil</h1>
+              <span class="d-block text-white"><%= @employee_profile.employee.email %></span>
+            </div>
+          </div>
+          <!-- End User Info -->
+          <%= link_to "Voir mon profil", employee_profile_path, class: "btn btn-sm btn-soft-white transition-3d-hover mt-4 mb-2" %>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="bg-light">
+    <div class="container space-2">
+      <h3 class="mb-5">Complétez votre profil afin de pouvoir effectuer une réservation.</h3>
+      <!-- Personal Info Form -->
+      <%= form_for @employee_profile, class: "js-validate" do |f| %>
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-6 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Prénom
+                <span class="text-danger">*</span>
+              </label>
 
-  <div class="form-group">
-    <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom' %>
+              <div class="form-group">
+                <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom', value: @employee_profile.last_name %>
+                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
+              </div>
+            </div>
+          </div>
+          <!-- End Input -->
+        </div>
+
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-6 mb-3">
+            <div class="js-form-message">
+              <label id="usernameLabel" class="form-label">
+                Nom
+                <span class="text-danger">*</span>
+              </label>
+              <div class="form-group">
+                <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom', value: @employee_profile.last_name %>
+              </div>
+            </div>
+          </div>
+          <!-- End Input -->
+        </div>
+        <%= f.submit "Enregistrer", class: "btn btn-sm btn-primary transition-3d-hover" %>
+      <% end %>
+    </div>
   </div>
-
-  <%= f.submit "Compléter son profil", class: 'btn btn-success' %>
-<% end %>
+</main>
