@@ -20,11 +20,17 @@
         <!-- Navigation -->
         <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
           <ul class="navbar-nav u-header__navbar-nav">
+            <!-- Masseurs panel -->
+            <li class="nav-item">
+              <%= link_to "Voir les Masseurs", masseur_profiles_path, class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+            </li>
+            <!-- End Masseurs panel -->
+
 
             <!-- Logged Employee buttons -->
             <% if employee_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Mon espace",  employee_profile_path(employee_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+                <%= link_to "Mon espace",  employee_profile_path(current_employee), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
               </li>
               <li class="nav-item">
                 <%= link_to(destroy_employee_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
@@ -36,7 +42,7 @@
             <!-- Logged Masseur buttons -->
             <% elsif masseur_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Mon espace",  masseur_profile_path(masseur_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+                <%= link_to "Mon espace",  masseur_profile_path(current_masseur), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
               </li>
               <li class="nav-item">
                 <%= link_to(destroy_masseur_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
@@ -48,7 +54,7 @@
             <!-- Logged Company buttons -->
             <% elsif company_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Mon espace",  company_profile_path(company_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+                <%= link_to "Mon espace",  company_profile_path(current_company), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
               </li>
               <li class="nav-item">
                 <%= link_to(destroy_company_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
@@ -60,9 +66,9 @@
             <!-- Logged Out -->
             <% else %>
               <!-- Masseurs panel -->
-              <li class="nav-item">
-                <%= link_to "Voir les Masseurs", root_path, class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
-              </li>
+              <!-- <li class="nav-item"> -->
+                <!-- <%= link_to "Voir les Masseurs", masseur_profiles_path, class: "nav-link u-header__nav-link u-header__nav-link-toggle" %> -->
+              <!-- </li> -->
               <!-- End Masseurs panel -->
             
               <!-- Sign up -->
