@@ -50,3 +50,9 @@ MasseurProfile.all.each do |masseur_profile|
     working_place:  MasseurProfile::WORKING_PLACES.sample
   )
 end
+
+Employee.skip_callback(:create, :after, :welcome_send)
+employee = Employee.invite!({:email => "employee11@yopmail.com'"}, Company.last) do |e|
+  e.skip_invitation = true
+end
+Employee.set_callback(:create, :after, :welcome_send)
