@@ -6,3 +6,25 @@
 #content-wrap {
   margin-bottom: 20px;
 }
+
+.one-line-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 10px;
+}
+
+li {
+  display: inline;
+}
+
+li div {
+  display: inline;
+}
+
