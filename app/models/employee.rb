@@ -8,6 +8,7 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :employee_profile, dependent: :destroy
+  belongs_to :company
 
 private
 
