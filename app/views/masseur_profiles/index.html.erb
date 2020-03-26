@@ -1,41 +1,288 @@
 <p>Critères de recherche : <br></p>
 
 <% if params[:query].present?%>
-    <% params[:query].each do |query_param| %>
-        - <%= query_param %><br>
-    <% end %>
-    <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+  <% params[:query].each do |query_param| %>
+      - <%= query_param %><br>
+  <% end %>
+  <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+
+<!-- Masseurs filter -->
 <% else %>
-    <%= form_with url: masseur_profiles_path, method: :get, local: true do |f| %>
-    <p>Type(s) de massage(s) que vous souhaitez :<br></p>
-        <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
-            <%= f.check_box(:query, {:multiple => true}, massage_type, nil) %><%= massage_type %><br>
-        <% end %>
-    <p><br>Lieu que vous souhaitez :<br></p>
-        <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
-            <%= f.check_box(:query, {:multiple => true}, working_place, nil) %><%= working_place %><br>
-        <% end %>
-        <%= f.submit "Recherche", class: 'btn btn-success' %>  <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
-    <% end %>
+  <%= form_with url: masseur_profiles_path, method: :get, local: true do |f| %>
+  <p>Type(s) de massage(s) que vous souhaitez :<br></p>
+      <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+          <%= f.check_box(:query, {:multiple => true}, massage_type, nil) %><%= massage_type %><br>
+      <% end %>
+  <p><br>Lieu que vous souhaitez :<br></p>
+      <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
+          <%= f.check_box(:query, {:multiple => true}, working_place, nil) %><%= working_place %><br>
+      <% end %>
+      <%= f.submit "Recherche", class: 'btn btn-success' %>  <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+  <% end %>
 <% end %>
-   
+<!-- End Masseurs filter -->
+
+<!-- Masseur Card -->
 <% if @masseur_profiles.any? %>
-    <% @masseur_profiles.each do |masseur_profile| %>
-        <h3><%= masseur_profile.first_name %> <%= masseur_profile.last_name %> </h3>
-        <h4>Description : <%= masseur_profile.description %></h4>
-        <h4>Prix : <%= masseur_profile.pricing %></h4>
-        <h4>Type(s) de massage proposé : 
-        <% masseur_profile.massage_types.each do |massage_type| %>
-            <br>- <%= massage_type %>
-        <% end %>
-        </h4>
-        <h4>Disponibilitée(s) :
-        <% masseur_profile.time_slots.each do |time_slot| %>
-            <br>- <%= time_slot %>
-        <% end %>
-        </h4>
-        <h4>Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
-    <% end %>
+  <% @masseur_profiles.each do |masseur_profile| %>
+      <h3><%= masseur_profile.first_name %> <%= masseur_profile.last_name %> </h3>
+      <h4>Description : <%= masseur_profile.description %></h4>
+      <h4>Prix : <%= masseur_profile.pricing %></h4>
+      <h4>Type(s) de massage proposé : 
+      <% masseur_profile.massage_types.each do |massage_type| %>
+          <br>- <%= massage_type %>
+      <% end %>
+      </h4>
+      <h4>Disponibilitée(s) :
+      <% masseur_profile.time_slots.each do |time_slot| %>
+          <br>- <%= time_slot %>
+      <% end %>
+      </h4>
+      <h4>Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
+  <% end %>
+<!-- End Masseur Card -->
+
+<!-- No Masseur found page -->
 <% else %>
-    <h4>Aucun masseur ne correspond à votre recherche</h4>
+  <h4>Aucun masseur ne correspond à votre recherche</h4>
 <% end %>
+<!-- End No Masseur found page -->
+
+
+
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+  <!-- Breadcrumb Section -->
+  <div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+          <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <li class="breadcrumb-item">
+                <%= link_to "Menu", root_path, class: "breadcrumb-link" %>
+              </li>
+              <li class="breadcrumb-item">
+                <%= link_to "Voir les masseurs", masseur_profiles_path, class: "breadcrumb-link" %>
+              </li>
+            </ol>
+            <!-- End Breadcrumb -->
+
+            <!-- Breadcrumb Nav Toggle Button -->
+            <!-- <div class="d-lg-none"> -->
+              <!-- <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white" -->
+                      <!-- aria-label="Toggle navigation" -->
+                      <!-- aria-expanded="false" -->
+                      <!-- aria-controls="breadcrumbNavBar" -->
+                      <!-- data-toggle="collapse" -->
+                      <!-- data-target="#breadcrumbNavBar"> -->
+                <!-- <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box"> -->
+                  <!-- <span class="u-hamburger__inner"></span> -->
+                <!-- </span> -->
+              <!-- </button> -->
+            <!-- </div> -->
+            <!-- End Breadcrumb Nav Toggle Button -->
+          </div>
+        </div>
+
+        <div class="col-lg-7 order-lg-1">
+          <!-- User Info -->
+          <h1 class="h2 text-white font-weight-medium mb-1">Masseurs</h1>
+          <!-- End User Info -->
+        </div>
+      </div>
+    </div>
+
+    <div>allo</div>
+    <div class="container space-bottom-1 space-bottom-lg-0">
+      <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+        <!-- Navbar -->
+        <div class="u-header u-header-left-aligned-nav u-header--bg-transparent-lg u-header--white-nav-links z-index-4">
+          <p class="h4 text-white font-weight-medium mb-1">Critères de recherche : <br></p>
+          <!-- Show wanted masseurs -->
+          <% if params[:query].present?%>
+            <% params[:query].each do |query_param| %>
+                - <%= query_param %><br>
+            <% end %>
+            <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+          <!-- End Show wanted masseurs -->
+
+          <!-- Show Masseurs filter -->
+          <% else %>
+          <div class="u-header__section bg-transparent">
+            <!-- <nav class="js-breadcrumb-menu navbar navbar-expand-lg u-header__navbar u-header__navbar--no-space"> -->
+              <div id="breadcrumbNavBar" class="collapse navbar-collapse u-header__navbar-collapse">
+
+                <%= form_with url: masseur_profiles_path, method: :get, local: true do |f| %>
+                <ul class="navbar-nav u-header__navbar-nav">
+                  <!-- Massage types selection -->
+                  <li class="nav-item">
+                    <div class="dropdown">
+                      <a class="btn dropdown-toggle nav-link u-header__nav-link u-header__nav-link-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Type(s) de massage(s)
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+                            <p class="dropdown-item">
+                              <%= f.check_box(:query, {:multiple => true}, massage_type, nil) %><span> </span>
+                              <%= massage_type %><br>
+                            </p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- End Massage types selection -->
+
+                  <!-- Massage place selection -->
+                  <li class="nav-item">
+                    <div class="dropdown">
+                      <a class="btn dropdown-toggle nav-link u-header__nav-link u-header__nav-link-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lieu de prise en charge
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
+                          <p class="dropdown-item">
+                            <%= f.check_box(:query, {:multiple => true}, working_place, nil) %><span> </span>
+                            <%= working_place %><br>
+                          </p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- End Massage place selection -->
+
+                  <!-- Submit button -->
+                  <li class="nav-item">
+                    <span> </span>
+                    <%= f.submit "Recherche", class: 'btn btn-sm btn-soft-white transition-3d-hover' %>
+                  </li>
+                  <!-- End Submit button -->
+
+                  <!-- Masseurs path button -->
+                  <li class="nav-item">
+                    <span> </span>
+                    <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-sm btn-soft-white transition-3d-hover'%>
+                  </li>
+                  <!-- End Masseurs path button -->
+                </ul>
+                <% end %>                
+              </div>
+            <!-- </nav> -->
+          </div>
+          <% end %>
+          <!-- End Show Masseurs filter -->
+        </div>
+        <!-- End Navbar -->
+
+        <div class="ml-lg-auto">
+          <!-- Button -->
+          <a class="btn btn-sm btn-soft-white transition-3d-hover" href="#addMembersModal"
+              data-modal-target="#addMembersModal">
+            <span class="fas fa-plus small mr-2"></span>
+            Add Members
+          </a>
+          <!-- End Button -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Breadcrumb Section -->
+
+  <!-- Content Section -->
+  <div class="bg-light">
+    <div class="container space-2">
+      <div class="row justify-content-between align-items-center mb-4">
+        <!-- Title -->
+        <div class="col-sm-4 col-md-6 mb-3 mb-sm-0">
+          <h2 class="h6 mb-0">9 members found</h2>
+        </div>
+        <!-- End Title -->
+
+        <!-- Filter -->
+        <div class="col-sm-8 col-md-6 text-sm-right">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <!-- Select -->
+              <select class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
+                <option value="alphabeticalOrderSelect1" selected>A-to-Z</option>
+                <option value="alphabeticalOrderSelect2">Z-to-A</option>
+              </select>
+              <!-- End Select -->
+            </li>
+            <li class="list-inline-item">
+              <span class="btn btn-sm btn-soft-primary active">
+                <span class="fas fa-th-large"></span>
+              </span>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-sm btn-soft-primary" href="members-list.html">
+                <span class="fas fa-list"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- End Filter -->
+      </div>
+
+      <div class="card-deck d-block d-md-flex">
+        <!-- Members -->
+        <div class="card text-center mb-5">
+          <div class="card-body p-6">
+            <!-- Team -->
+            <div class="mb-4">
+              <div class="position-relative u-lg-avatar mx-auto mb-3">
+                <img class="img-fluid rounded-circle" src="../../assets/img/100x100/img9.jpg" alt="Image Description">
+                <span class="badge badge-xs badge-outline-primary badge-pos badge-pos--bottom-left rounded-circle"></span>
+              </div>
+
+              <a class="btn btn-sm btn-icon btn-soft-warning btn-bg-transparent position-absolute top-0 right-0 rounded-circle m-3" href="javascript:;" data-toggle="tooltip" data-placement="top" title="Add to favorites">
+                <span class="far fa-star btn-icon__inner"></span>
+              </a>
+
+              <h2 class="h6 mb-0">
+                <a href="#">Patrick Garner</a>
+              </h2>
+              <a class="small" href="#">@patrickgarner</a>
+            </div>
+            <!-- End Team -->
+
+            <!-- Social Networks -->
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item">
+                <a class="btn btn-sm btn-icon btn-soft-secondary rounded-circle" href="#">
+                  <span class="fab fa-facebook-f btn-icon__inner"></span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn btn-sm btn-icon btn-soft-secondary rounded-circle" href="#">
+                  <span class="fab fa-google btn-icon__inner"></span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn btn-sm btn-icon btn-soft-secondary rounded-circle" href="#">
+                  <span class="fab fa-twitter btn-icon__inner"></span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn btn-sm btn-icon btn-soft-secondary rounded-circle" href="#">
+                  <span class="fab fa-github btn-icon__inner"></span>
+                </a>
+              </li>
+            </ul>
+            <!-- End Social Networks -->
+          </div>
+
+          <div class="card-footer py-4 px-6">
+            <a class="btn btn-sm btn-soft-primary transition-3d-hover" href="#">
+              <span class="far fa-envelope mr-2"></span>
+              Send a Message
+            </a>
+          </div>
+        </div>
+        <!-- End Members -->
+      </div>
+    </div>
+  </div>
+</main>
+<!-- ========== END MAIN ========== -->
