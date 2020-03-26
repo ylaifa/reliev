@@ -1,53 +1,111 @@
 <!-- ========== HEADER ========== -->
-<header id="header" class="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md">
-  <div id="logoAndNav" class="container">
+<header class="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md white-background">
+  <div id="logoAndNav">
     <!-- Nav -->
-      <nav class="container js-mega-menu navbar navbar-expand-md u-header__navbar u-header__navbar--no-space fixed-top">
+      <nav class="container js-mega-menu navbar navbar-expand-md u-header__navbar u-header__navbar--no-space white-background">
         <!-- Logo -->
-          <%= link_to root_path, class: "navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-text" do %>
-            <span class="u-header__navbar-brand-text">Reliev</span>
-          <% end %>
+        <%= link_to root_path, class: "navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-text" do %>
+          <span class="u-header__navbar-brand-text">Reliev</span>
+        <% end %>
         <!-- End Logo -->
+
+        <!-- responsive toggler -->
+        <button type="button" class="navbar-toggler btn u-hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+          <span id="hamburgerTrigger" class="u-hamburger__box">
+            <span class="u-hamburger__inner">
+            </span>
+          </span>
+        </button>
 
         <!-- Navigation -->
         <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
           <ul class="navbar-nav u-header__navbar-nav">
-            <!-- Logged Employee button -->
+
+            <!-- Logged Employee buttons -->
             <% if employee_signed_in? %>
-              <%= link_to "Mon espace",  'javascript:;', class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
-              <%= link_to "Déconnexion", destroy_employee_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover" %>        
-            <!-- Logged Masseur button -->
+              <li class="nav-item">
+                <%= link_to "Mon espace",  employee_profile_path(employee_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to(destroy_employee_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
+                  Déconnexion
+                <% end %>
+              </li>
+            <!-- End Logged Employee buttons -->
+
+            <!-- Logged Masseur buttons -->
             <% elsif masseur_signed_in? %>
-              <%= link_to "Mon espace",  'javascript:;', class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
-              <%= link_to(destroy_masseur_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
-                Déconnexion
-              <% end %>
-            <!-- Logged Company button -->
+              <li class="nav-item">
+                <%= link_to "Mon espace",  masseur_profile_path(masseur_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to(destroy_masseur_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
+                  Déconnexion
+                <% end %>
+              </li>
+            <!-- Logged Masseur buttons -->
+
+            <!-- Logged Company buttons -->
             <% elsif company_signed_in? %>
-              <%= link_to "Mon espace",  'javascript:;', class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
-              <%= link_to "Déconnexion", destroy_employee_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover" %>        
+              <li class="nav-item">
+                <%= link_to "Mon espace",  company_profile_path(company_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to(destroy_company_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
+                  Déconnexion
+                <% end %>
+              </li>
+            <!-- Logged Company buttons -->
+
+            <!-- Logged Out -->
             <% else %>
               <!-- Masseurs panel -->
-              <li>
-                <%= link_to "Masseurs", root_path, class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+              <li class="nav-item">
+                <%= link_to "Voir les Masseurs", root_path, class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
               </li>
               <!-- End Masseurs panel -->
             
+              <!-- Sign up -->
+              <div class="btn-group dropdown">
+                <button class="btn btn-light dropdown-toggle transition-3d-hover" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  S'inscrire
+                </button>
+                <div class="dropdown-menu">
+                  <li class="nav-item">
+                    <%= link_to "Masseur",    new_masseur_registration_path,  class: "dropdown-item" %>
+                    <%= link_to "Entreprise", new_company_registration_path,  class: "dropdown-item" %>
+                  </li>
+                  </div>
+                </div>
+              <!-- End Sign up -->
+
+              <!-- Sign in -->
+              <li class="nav-item">
+                <div class="btn-group dropdown">
+                  <button class="btn btn-primary ml-2 dropdown-toggle transition-3d-hover" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Connexion
+                  </button>
+                  <div class="dropdown-menu">
+                    <%= link_to "Masseur",    masseur_session_path,  class: "dropdown-item" %>
+                    <%= link_to "Entreprise", company_session_path,  class: "dropdown-item" %>
+                    <%= link_to "Salarié",    employee_session_path, class: "dropdown-item" %>
+                  </div>
+                </div>
+              </li>
+              <!-- End Sign in -->              
+
               <!-- Employee account -->
-              <li class="nav-item u-header__nav-last-item">
-                <%= link_to "Compte salarié", employee_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
+              <li class="">
               </li>
               <!-- End Employee account -->
 
               <!-- Masseur account up-->
               <li class="nav-item u-header__nav-last-item">
-                <%= link_to "Compte Masseur", masseur_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
               </li>
               <!-- End Compte Masseur -->            
             
               <!-- Company account -->
               <li class="nav-item u-header__nav-last-item">
-                <%= link_to "Compte entreprise", company_session_path, class: "btn btn-sm btn-primary transition-3d-hover" %>
               </li>
               <!-- End Company account -->
             <% end %>
@@ -58,5 +116,12 @@
       <!-- End Nav -->
     </div>
   </div>
+
+  <!-- <script> -->
+    <!-- // $(document).ready(function(){ -->
+      <!-- // $('.dropdown-toggle').dropdown() -->
+    <!-- // }); -->
+  <!-- // </script> -->
+
 </header>
 <!-- ========== END HEADER ========== -->
