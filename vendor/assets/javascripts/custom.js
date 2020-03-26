@@ -65,6 +65,7 @@ document.addEventListener("turbolinks:load", function() {
   // alert("ok!")
  });
 
+// To make the dropdown button of header functionnal
 $(document).ready(function(){
   $('.dropdown-toggle').dropdown()
 });
