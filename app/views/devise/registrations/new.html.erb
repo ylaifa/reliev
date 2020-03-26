@@ -1,29 +1,88 @@
-<h2>Sign up</h2>
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+  <!-- Form -->
+  <div class="d-flex align-items-center position-relative height-lg-100vh">
+    <div class="col-lg-5 col-xl-4 d-none d-lg-flex align-items-center gradient-half-primary-v1 height-lg-100vh px-0">
+      <div class="w-100 p-5">
+      </div>
+    </div>
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-md-8 col-lg-7 col-xl-6 offset-md-2 offset-lg-2 offset-xl-3 space-3 space-lg-0">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+            <!-- Title -->
+            <div class="mb-7">
+              <h1 class="h3 text-primary font-weight-normal mb-0">Bienvenu sur <span class="font-weight-semi-bold">Reliev</span></h1>
+              <p>Quand travailler est un plaisir.</p>
+            </div>
+            <!-- End Title -->
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <!-- Form Group -->
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="js-form-message form-group">
+              <div class="field">
+                <%= f.label :email, class: "form-label"%>
+                <%= f.email_field :email, class: "form-control", placeholder: "Adresse email", autofocus: true, autocomplete: "email" %>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group">
+              <div class="field">
+                <%= f.label :mot_de_passe, class: "form-label" %>
+                <%= f.password_field :mot_de_passe, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group">   
+              <div class="field">
+                <%= f.label :password_confirmation, class: "form-label" %>
+                <%= f.password_field :password_confirmation, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Checkbox -->
+            <div class="js-form-message mb-5">
+              <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+                <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required
+                        data-msg="Please accept our Terms and Conditions."
+                        data-error-class="u-has-error"
+                        data-success-class="u-has-success">
+                <label class="custom-control-label" for="termsCheckbox">
+                  <small>
+                    J'ai lu et j'accepte les 
+                    <a class="link-muted" href="#">Termes et Conditions</a>
+                  </small>
+                </label>
+              </div>
+            </div>
+            <!-- End Checkbox -->
+
+            <!-- Button -->
+            <div class="row align-items-center mb-5">
+              <div class="col-5 col-sm-6">
+                <span class="small text-muted">Déjà un compte?</span>
+                <%= link_to "Connexion", masseur_session_path, class: "small" %>
+              </div>
+
+              <div class="col-7 col-sm-6 text-right">
+                <div class="actions">
+                  <%= f.submit "Commencer", class: "btn btn-primary transition-3d-hover" %>
+                </div>
+              </div>
+            </div>
+            <!-- End Button -->
+        </div>
+      </div>
+    </div>
   </div>
+  <% end %>
+  <!-- End Form -->
+</main>
+<!-- ========== END MAIN ========== -->
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
