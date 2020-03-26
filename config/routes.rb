@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   devise_for :masseurs,  controllers: { registrations: "registrations" }
   devise_for :companies, controllers: { registrations: "registrations" }
 
-  resources :companies do
-    resources :employees
+  devise_scope :company do 
+    match "/companies/:project_id/invitations/new", :to => "invitations#new", :via => "get", :as => "new_project_invitation"
   end
-
+  
   resources  :masseur_profiles,  only: [:index, :show, :edit, :update]
   resources  :company_profiles,  only: [:show, :edit, :update]
   resources  :employee_profiles, only: [:show, :edit, :update]
