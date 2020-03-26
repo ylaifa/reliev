@@ -135,39 +135,40 @@
       <div class="display-cards space-around">
         <% if @masseur_profiles.any? %>
           <% @masseur_profiles.each do |masseur_profile| %>
-          <div id="masseur-card" class="card text-light" style="width:500px">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="Card image">
-            <div class="mid-space">
-              <div class="card-img-overlay">
-                <h4 class="card-title font-weight-bold">
-                  <%= masseur_profile.first_name %> <%= masseur_profile.last_name %>
-                </h4>
-                <h4>
-                  Description : 
-                  <span class="font-weight-light"><%= masseur_profile.description %>
-                  </span>
-                </h4>
-                <h4>Type(s) de massage proposé : 
-                  <span class="font-weight-light">
-                    <% masseur_profile.massage_types.each do |massage_type| %>
-                      <br>- <%= massage_type %>
-                    <% end %>
-                  </span>
-                </h4>          
-                <h4>Disponibilitée(s) :
-                  <span class="font-weight-light">
-                    <% masseur_profile.time_slots.each do |time_slot| %>
-                      <br>- <%= time_slot %>
-                    <% end %>
-                  </span>
-                </h4>
-                <h4 class="text-lg-right">Prix : <%= masseur_profile.pricing %></h4>
-                <h4 class="text-lg-right">Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
-                <a href="#" class="btn btn-primary">Voir le profil</a>
+            <div id="masseur-card" class="card text-light" style="width:500px">
+              <img class="card-img-top" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="Card image">
+              <div class="mid-space max-100">
+                <div class="card-img-overlay">
+                  <h4 class="card-title font-weight-bold">
+                    <%= masseur_profile.first_name %> <%= masseur_profile.last_name %>
+                  </h4>
+                  <h4>
+                    Description : 
+                    <span class="font-weight-light"><%= masseur_profile.description %>
+                    </span>
+                  </h4>
+                  <h4>Type(s) de massage proposé : 
+                    <span class="font-weight-light">
+                      <% masseur_profile.massage_types.each do |massage_type| %>
+                        <br>- <%= massage_type %>
+                      <% end %>
+                    </span>
+                  </h4>          
+                  <!-- <h4>Disponibilitée(s) : -->
+                    <!-- <span class="font-weight-light"> -->
+                      <!-- <% masseur_profile.time_slots.each do |time_slot| %> -->
+                        <!-- <br>- <%= time_slot %> -->
+                      <!-- <% end %> -->
+                    <!-- </span> -->
+                  <!-- </h4> -->
+                  <h4 class="text-lg-right">Prix : <%= masseur_profile.pricing %></h4>
+                  <h4 class="text-lg-right">Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
+                  <a href="#" class="btn btn-primary">Voir le profil</a>
+                </div>
               </div>
             </div>
-          </div>
           <% end %>
+
 
         <!-- No Masseur found page -->
         <% else %>
