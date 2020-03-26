@@ -64,3 +64,7 @@ $(document).on('ready', function () {
 document.addEventListener("turbolinks:load", function() {
   // alert("ok!")
  });
+
+$(document).ready(function(){
+  $('.dropdown-toggle').dropdown()
+});
