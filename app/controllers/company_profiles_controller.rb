@@ -1,4 +1,7 @@
 class CompanyProfilesController < ApplicationController
+  before_action :authenticate_company!
+  before_action :check_privileges!, only: [:show, :edit]
+
   def show
     # @company_profile = CompanyProfile.find(params[:id])
     @company_profile = CompanyProfile.find_by(company_id: params[:id])
@@ -25,10 +28,14 @@ class CompanyProfilesController < ApplicationController
     redirect_to company_profile_path(current_company.company_profile), notice: "L'invitation a été envoyée avec succès"
   end
 
+  private 
+
+  def company_profile_params 
+    params.require(:company_profile).permit(:name)
+  end
+
+  def check_privileges!
+    redirect_to root_path unless current_company == CompanyProfile.find(params[:id]).company
+  end
 end
 
-private 
-
-def company_profile_params 
-  params.require(:company_profile).permit(:name)
-end
