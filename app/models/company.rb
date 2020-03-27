@@ -6,7 +6,11 @@ class Company < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_one :company_profile
+  include DeviseInvitable::Inviter
+
+  has_one :company_profile, dependent: :destroy
+  has_many :invitations, class_name: self.to_s, as: :invited_by
+  has_many :employees, dependent: :destroy
 
   def create_profile
     CompanyProfile.create(company: self)

@@ -8,80 +8,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
 
-    <%= stylesheet_link_tag    'application' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
 
     <!-- Google Fonts -->
     <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div id="page-container">
+      <%= render 'layouts/header' %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>  
 
-    <!-- JS Plugins Init. -->
-    <script>
-      $(window).on('load', function () {
-        // initialization of HSMegaMenu component
-        $('.js-mega-menu').HSMegaMenu({
-          event: 'hover',
-          pageContainer: $('.container'),
-          breakpoint: 767.98,
-          hideTimeOut: 0
-        });
+      <div id="content-wrap" class="mt-10">
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
 
-        // initialization of svg injector module
-        $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
-      });
 
-      $(document).on('ready', function () {
-        // initialization of header
-        $.HSCore.components.HSHeader.init($('#header'));
-
-        // initialization of unfold component
-        $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
-          afterOpen: function () {
-            $(this).find('input[type="search"]').focus();
-          }
-        });
-
-        // initialization of malihu scrollbar
-        $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
-
-        // initialization of forms
-        $.HSCore.components.HSFocusState.init();
-
-        // initialization of form validation
-        $.HSCore.components.HSValidation.init('.js-validate', {
-          rules: {
-            confirmPassword: {
-              equalTo: '#signupPassword'
-            }
-          }
-        });
-
-        // initialization of show animations
-        $.HSCore.components.HSShowAnimation.init('.js-animation-link');
-
-        // initialization of fancybox
-        $.HSCore.components.HSFancyBox.init('.js-fancybox');
-
-        // initialization of text animation (typing)
-        var typed = new Typed(".u-text-animation.u-text-animation--typing", {
-          strings: ["more professional.", "perfect in every way.", "astonishing."],
-          typeSpeed: 60,
-          loop: true,
-          backSpeed: 25,
-          backDelay: 1500
-        });
-
-        // initialization of slick carousel
-        $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-        // initialization of go to
-        $.HSCore.components.HSGoTo.init('.js-go-to');
-      });
-    </script>
+    <!-- Bootstrap CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -1,3 +1,181 @@
-<h1>Hello <%= @employee_profile.first_name %> <%= @employee_profile.last_name %></h1>
-<button> <%= link_to "Se déconnecter", destroy_employee_session_path, method: :delete %></button>
-<button> <%= link_to "Editer mon profil", edit_employee_registration_path %></button>
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+  <!-- Breadcrumb Section -->
+  <div class="bg-primary">
+    <div class="container space-1">
+      <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+        <div class="mb-3 mb-sm-0">
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+            <li class="breadcrumb-item">
+              <%= link_to "Accueil", root_path, class: "breadcrumb-link" %>
+            </li>
+            <li class="breadcrumb-item">
+              <%= link_to "Mon Profil", 'javascript:;', class: "breadcrumb-link" %>
+            </li>
+          </ol>
+          <!-- End Breadcrumb -->
+        </div>
+
+        <!-- Profile buttons -->
+        <div>
+          <!-- Edit Profile -->
+          <%= link_to "Editer mon profil", edit_employee_profile_path, class: "btn btn-sm btn-soft-white transition-3d-hover" %>
+          <!-- End Edit Profile -->
+
+          <!-- Log out -->
+          <%= link_to "Se déconnecter", destroy_employee_session_path, method: :delete, class: "btn btn-sm btn-soft-white transition-3d-hover" %>
+          <!-- End log out -->
+        </div>
+        <!-- End Profile buttons -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End Breadcrumb Section -->
+
+  <!-- Content Section -->
+  <div class="bg-light">
+    <div class="container space-2">
+      <div class="row">
+        <div class="col-lg-3 mb-7 mb-lg-0">
+          <!-- Profile Card -->
+          <div class="card p-1 mb-4">
+            <div class="card-body text-center">
+              <div class="mb-3">
+              </div>
+
+              <div class="mb-3">
+                <h1 class="h6 font-weight-medium mb-0"><%= @employee_profile.first_name %> <%= @employee_profile.last_name %></h1>
+                <small class="d-block text-muted">Vous faites partie d'une entreprise de <%= ["Bureautique", "Télécommunication", "Presse", "Startup"].sample %></small>
+              </div>
+            </div>
+          </div>
+          <!-- End Profile Card -->
+
+          <!-- Social Profiles -->
+          <div class="card mb-4">
+            <div class="card-header pt-4 pb-3 px-0 mx-4">
+              <h3 class="h6 mb-0">Réseaux sociaux</h3>
+            </div>
+
+            <div class="card-body pt-3 pb-4 px-4">
+              <!-- Social Profiles -->
+              <a class="media mb-4" href="#">
+                <div class="u-sm-avatar mr-3">
+                  <i class="fab fa-twitter-square"></i>
+                </div>
+                <div class="media-body">
+                  <span class="d-block text-dark">Twitter</span>
+                  <small class="d-block text-secondary">2.7k followers</small>
+                </div>
+              </a>
+              <!-- End Social Profiles -->
+
+              <!-- Social Profiles -->
+              <a class="media" href="#">
+                <div class="u-sm-avatar mr-3">
+                  <i class="fab fa-facebook-square"></i>
+                </div>
+                <div class="media-body">
+                  <span class="d-block text-dark">Facebook</span>
+                  <small class="d-block text-secondary">3k followers</small>
+                </div>
+              </a>
+              <!-- End Social Profiles -->
+            </div>
+          </div>
+          <!-- End Social Profiles -->
+        </div>
+
+        <div class="col-lg-9">
+          <!-- User Details -->
+          <div class="mb-4">
+            <h2 class="h4">Bonjour <%= @employee_profile.first_name %> <%= @employee_profile.last_name %></h2>
+            <h1></h1>
+            <h4 class="h6 text-secondary mb-0"><small>- Joined today</small></h4>
+          </div>
+          <!-- End User Details -->
+
+          <!-- Info -->
+          <div class="mb-4">
+            <% if @employee_profile.first_name == nil %>
+              <p>Vous n'avez pas encore précisé le nom de votre nom. <br/>Vous pouvez le faire via la rubrique 
+                <%= link_to "Editer mon profil", edit_employee_profile_path %>
+              </p>
+            <% end %>
+          </div>
+          <!-- End Info -->
+
+          <!-- Collections -->
+          <ul class="list-inline d-flex align-items-center">
+            <li class="list-inline-item mb-3 mb-sm-0 mr-5">
+              <div class="d-flex align-items-center">
+                <div class="text-secondary">
+                  Vous avez profité de 4 massages.
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- End Collections -->
+
+          <hr class="my-7">
+
+          <!-- Icon Blocks -->
+          <div class="row">
+            <div class="col-md-6 col-lg-4">
+              <!-- List Group -->
+              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
+                <li class="list-group-item pt-0 pb-4">
+                  <div class="media">
+                    <span class="fas fa-envelope list-group-icon mr-3"></span>
+                    <div class="media-body text-lh-sm">
+                      <span class="d-block mb-1">Email:</span>
+                      <a href="#"><%= @employee_profile.employee.email %></a>
+                    </div>
+                  </div>
+                </li>
+              <!-- End List Group -->
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <!-- List Group -->
+              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
+                <li class="list-group-item pt-0 pb-4">
+                  <div class="media">
+                    <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
+                    <div class="media-body text-lh-sm">
+                      <span class="d-block mb-1">Phone number:</span>
+                      <a href="#">+331 00 10 00 10</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!-- End List Group -->
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <!-- List Group -->
+              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
+                <li class="list-group-item pt-0 pb-4">
+                  <div class="media">
+                    <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
+                    <div class="media-body text-lh-sm">
+                      <span class="d-block mb-1">Secteur d'activité :</span>
+                      <a href="#">France</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!-- End List Group -->
+            </div>
+          </div>
+          <!-- End Icon Blocks -->
+          <hr class="my-7">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content Section -->
+</main>
+<!-- ========== END MAIN ========== -->

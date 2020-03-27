@@ -40,7 +40,11 @@
             <!-- Form Group -->
             <div class="js-form-message form-group">   
               <div class="field">
+<<<<<<< HEAD
                 <%= f.label :confirmation_mot_de_passe, class: "form-label" %>
+=======
+                <%= f.label :confirmation_du_mot_de_passe, class: "form-label" %>
+>>>>>>> d25512a788df1f02a2bf881d4b406fdcda809ee4
                 <%= f.password_field :password_confirmation, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
               </div>
             </div>
@@ -67,7 +71,7 @@
             <div class="row align-items-center mb-5">
               <div class="col-5 col-sm-6">
                 <span class="small text-muted">Déjà un compte?</span>
-                <%= link_to "Connexion", masseur_session_path, class: "small" %>
+                <%= link_to "Connexion", session_path(resource), class: "small" %>
               </div>
 
               <div class="col-7 col-sm-6 text-right">

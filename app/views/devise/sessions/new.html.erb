@@ -32,7 +32,7 @@
             <div class="js-form-message form-group">
               <div class="field">
                 <%= f.label :mot_de_passe, class: "form-label" %>
-                <%= f.password_field :mot_de_passe, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
+                <%= f.password_field :password, class: "form-control", placeholder: "********", autocomplete: "new-password" %>
               </div>
             </div>
             <!-- End Form Group -->
@@ -48,8 +48,8 @@
               <div class="row align-items-center mb-5">
                 <div class="col-5 col-sm-6">
                   <span class="small text-muted">Pas encore de compte?</span>
-                  <%= link_to "S'inscrire", new_masseur_registration_path, class: "small" %><br>
-                  <%= link_to "Mot de passe oublié?", new_masseur_password_path, class: "small" %>
+                  <%= link_to "S'inscrire", new_registration_path(resource), class: "small" %><br>
+                  <%= link_to "Mot de passe oublié?", new_password_path(resource), class: "small" %>
                 </div>
                 <div class="col-7 col-sm-6 text-right">
                   <div class="actions">

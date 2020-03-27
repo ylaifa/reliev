@@ -1,41 +1,184 @@
-<p>Critères de recherche : <br></p>
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+  <!-- Breadcrumb Section -->
+  <div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+          <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <li class="breadcrumb-item">
+                <%= link_to "Menu", root_path, class: "breadcrumb-link" %>
+              </li>
+              <li class="breadcrumb-item">
+                <%= link_to "Voir les masseurs", masseur_profiles_path, class: "breadcrumb-link" %>
+              </li>
+            </ol>
+            <!-- End Breadcrumb -->
+          </div>
+        </div>
+        <div class="col-lg-7 order-lg-1">
+          <!-- Page name -->
+          <h1 class="h2 text-white font-weight-medium mb-1">Masseurs</h1>
+          <!-- End Page name -->
+        </div>
+      </div>
+    </div>
 
-<% if params[:query].present?%>
-    <% params[:query].each do |query_param| %>
-        - <%= query_param %><br>
-    <% end %>
-    <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
-<% else %>
-    <%= form_with url: masseur_profiles_path, method: :get, local: true do |f| %>
-    <p>Type(s) de massage(s) que vous souhaitez :<br></p>
-        <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
-            <%= f.check_box(:query, {:multiple => true}, massage_type, nil) %><%= massage_type %><br>
+    <div class="container space-bottom-1 space-bottom-lg-0">
+      <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+        <!-- Blue section -->
+        <div class="u-header u-header--bg-transparent-lg z-index-4">
+          <p class="h4 text-white font-weight-medium mb-1">Critères de recherche : <br></p>
+          <!-- Show wanted masseurs -->
+          <% if params[:query].present?%>
+            <% params[:query].each do |query_param| %>
+                - <%= query_param %><br>
+            <% end %>
+            <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+          <!-- End Show wanted masseurs -->
+
+          <!-- Show Masseurs filter -->
+          <% else %>
+          <div class="u-header__section bg-transparent">
+              <div class="one-line-display">
+
+                <%= form_with url: masseur_profiles_path, method: :get, local: true do |f| %>
+                <ul>
+                  <!-- Massage types selection -->
+                  <li>
+                    <div class="dropdown">
+                      <a class="btn dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Type(s) de massage(s)
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+                            <p class="dropdown-item">
+                              <%= f.check_box(:query, {:multiple => true}, massage_type, nil) %><span> </span>
+                              <%= massage_type %><br>
+                            </p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- End Massage types selection -->
+
+                  <!-- Massage place selection -->
+                  <li>
+                    <div class="dropdown">
+                      <a class="btn dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lieu de prise en charge
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
+                          <p class="dropdown-item">
+                            <%= f.check_box(:query, {:multiple => true}, working_place, nil) %><span> </span>
+                            <%= working_place %><br>
+                          </p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- End Massage place selection -->
+
+                  <!-- Submit button -->
+                  <li>
+                    <span> </span>
+                    <%= f.submit "Recherche", class: 'btn btn-sm btn-soft-white transition-3d-hover' %>
+                  </li>
+                  <!-- End Submit button -->
+
+                  <!-- Masseurs path button -->
+                  <li>
+                    <span> </span>
+                    <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-sm btn-soft-white transition-3d-hover'%>
+                  </li>
+                  <!-- End Masseurs path button -->
+                </ul>
+                <% end %>                
+              </div>
+          </div>
+          <% end %>
+          <!-- End Show Masseurs filter -->
+        </div>
+        <!-- End Blue section -->
+      </div>
+    </div>
+  </div>
+  <!-- End Breadcrumb Section -->
+
+  <!-- Content Section -->
+  <div class="bg-light">
+    <div class="container space-2">
+      <div class="row justify-content-between align-items-center mb-4">
+        <!-- Masseurs quantity -->
+        <div class="col-sm-4 col-md-6 mb-3 mb-sm-0">
+          <h2 class="h6 mb-0">9 members found</h2>
+        </div>
+        <!-- End Masseurs quantity -->
+
+        <!-- Filter -->
+        <div class="col-sm-8 col-md-6 text-sm-right">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <span class="btn btn-sm btn-soft-primary active">
+                <span class="fas fa-th-large"></span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <!-- End Filter -->
+      </div>
+
+      <!-- display all cards -->
+      <div class="display-cards space-around">
+        <% if @masseur_profiles.any? %>
+          <% @masseur_profiles.each do |masseur_profile| %>
+            <div id="masseur-card" class="card text-light" style="width:500px">
+              <img class="card-img-top" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="Card image">
+              <div class="mid-space max-100">
+                <div class="card-img-overlay">
+                  <h4 class="card-title font-weight-bold">
+                    <%= masseur_profile.first_name %> <%= masseur_profile.last_name %>
+                  </h4>
+                  <h4>
+                    Description : 
+                    <span class="font-weight-light"><%= masseur_profile.description %>
+                    </span>
+                  </h4>
+                  <h4>Type(s) de massage proposé : 
+                    <span class="font-weight-light">
+                      <% masseur_profile.massage_types.each do |massage_type| %>
+                        <br>- <%= massage_type %>
+                      <% end %>
+                    </span>
+                  </h4>          
+                  <!-- <h4>Disponibilitée(s) : -->
+                    <!-- <span class="font-weight-light"> -->
+                      <!-- <% masseur_profile.time_slots.each do |time_slot| %> -->
+                        <!-- <br>- <%= time_slot %> -->
+                      <!-- <% end %> -->
+                    <!-- </span> -->
+                  <!-- </h4> -->
+                  <h4 class="text-lg-right">Prix : <%= masseur_profile.pricing %></h4>
+                  <h4 class="text-lg-right">Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
+                  <a href="#" class="btn btn-primary">Voir le profil</a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+
+        <!-- No Masseur found page -->
+        <% else %>
+          <h4>Aucun masseur ne correspond à votre recherche</h4>
         <% end %>
-    <p><br>Lieu que vous souhaitez :<br></p>
-        <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
-            <%= f.check_box(:query, {:multiple => true}, working_place, nil) %><%= working_place %><br>
-        <% end %>
-        <%= f.submit "Recherche", class: 'btn btn-success' %>  <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
-    <% end %>
-<% end %>
-   
-<% if @masseur_profiles.any? %>
-    <% @masseur_profiles.each do |masseur_profile| %>
-        <h3><%= masseur_profile.first_name %> <%= masseur_profile.last_name %> </h3>
-        <h4>Description : <%= masseur_profile.description %></h4>
-        <h4>Prix : <%= masseur_profile.pricing %></h4>
-        <h4>Type(s) de massage proposé : 
-        <% masseur_profile.massage_types.each do |massage_type| %>
-            <br>- <%= massage_type %>
-        <% end %>
-        </h4>
-        <h4>Disponibilitée(s) :
-        <% masseur_profile.time_slots.each do |time_slot| %>
-            <br>- <%= time_slot %>
-        <% end %>
-        </h4>
-        <h4>Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
-    <% end %>
-<% else %>
-    <h4>Aucun masseur ne correspond à votre recherche</h4>
-<% end %>
+        <!-- End No Masseur found page -->
+    </div>
+    <!-- end display all cards -->
+    </div>
+  </div>
+  <!-- end content section -->
+</main>
+<!-- ========== END MAIN ========== -->
