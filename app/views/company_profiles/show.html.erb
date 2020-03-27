@@ -51,7 +51,7 @@
                     <%= image_tag "https://png.pngtree.com/svg/20170307/c02483909c.png", class:"img-fluid rounded-circle ml-2", alt:"Default Company Profile Picture" %>
                   </div>    
                   <h1 class="h6 font-weight-medium mb-0"><%= @company_profile.name %></h1>
-                  <small class="d-block text-muted"><%= ["Bureautique", "Télécommunication", "Presse", "Startup"].sample %></small>
+                  <small class="d-block text-muted"><%= @company_profile.business_line %></small>
                 </center>
               </div>
             </div>
@@ -157,8 +157,8 @@
                   <div class="media">
                     <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
                     <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Secteur d'activité :</span>
-                      <a href="#">France</a>
+                      <span class="d-block mb-1">Ville:</span>
+                      <a href="#"><%= @company_profile.city %></a>
                     </div>
                   </div>
                 </li>
@@ -173,8 +173,8 @@
                   <div class="media">
                     <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
                     <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Phone number:</span>
-                      <a href="#">+331 00 10 00 10</a>
+                      <span class="d-block mb-1">Téléphone:</span>
+                      <a href="#"><%= @company_profile.phone_number %></a>
                     </div>
                   </div>
                 </li>
@@ -214,6 +214,26 @@
             </div>
             <% end %>
           <hr class="my-7">
+
+          <h2 class="h4">Mes évènements : </h2>
+          <div class="row">
+            <% @events.each do |event|%>
+            <div class="card w-100">
+              <div class="card-body">
+                <h5 class="card-text"><%= event.title %></h5>
+                <blockquote class="blockquote mb-0">
+                <footer class="blockquote-footer">
+                    Nombre de participants maximum : <%= event.maximum_number_of_participation %><br/></p>
+                    <p><small><cite title="Source Title"><%= event.created_at.strftime("A été crée le: %m/%d/%Y at %I:%M %p") %></cite></small>
+                    <p><%= link_to "Editer mon évènement", edit_event_path(event), class: "btn btn-primary ml-2" %></p>
+                </footer>
+                </blockquote>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <hr class="my-7">
+
         </div>
       </div>
     </div>

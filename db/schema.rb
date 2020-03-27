@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_172946) do
+ActiveRecord::Schema.define(version: 2020_03_27_120947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street_number"
+    t.string "route"
+    t.string "locality"
+    t.string "administrative_area_level_1"
+    t.string "postal_code"
+    t.string "country"
+    t.bigint "company_profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_profile_id"], name: "index_addresses_on_company_profile_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,6 +45,9 @@ ActiveRecord::Schema.define(version: 2020_03_26_172946) do
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
+    t.string "phone_number"
+    t.string "business_line"
     t.index ["company_id"], name: "index_company_profiles_on_company_id"
   end
 
@@ -68,6 +84,19 @@ ActiveRecord::Schema.define(version: 2020_03_26_172946) do
     t.index ["invited_by_id"], name: "index_employees_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_employees_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "masseur"
+    t.string "participating_employees", default: [], array: true
+    t.string "moment"
+    t.integer "maximum_number_of_participation"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_events_on_company_id"
   end
 
   create_table "masseur_profiles", force: :cascade do |t|

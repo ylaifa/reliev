@@ -11,6 +11,7 @@ class Company < ApplicationRecord
   has_one :company_profile, dependent: :destroy
   has_many :invitations, class_name: self.to_s, as: :invited_by
   has_many :employees, dependent: :destroy
+  has_many :events
 
   def create_profile
     CompanyProfile.create(company: self)
