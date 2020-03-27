@@ -1,6 +1,6 @@
 <h2>Complétez votre profil</h2>
 
-<%= form_with model: @company_profile do |f| %>
+<%= form_with model: @company_profile, local: true do |f| %>
 
   <div class="form-group mb-2">
     <%= f.text_field :name, class: 'form-control', placeholder: 'Nom' %>

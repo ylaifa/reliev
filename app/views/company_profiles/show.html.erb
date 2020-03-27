@@ -1,8 +1,9 @@
 <h1>Hello <%= @company_profile.name %></h1>
 <h3>Inviter un salarié : </h3>
-<%= form_with model: @employee, method: "invite_employee" do |f| %>
-  <%= f.text_field :email, class: "form-control" %>
-  <%= f.submit "Envoyer l'invitation", class: 'btn btn-primary' %>
+<%= form_with(url: "/send_invite_to_employee", method: "patch", local: true) do %>
+  <%= label_tag(:q, "Email:") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("Invite") %>
 <% end %>
 
 <button> <%= link_to "Se déconnecter", destroy_company_session_path, method: :delete %></button>

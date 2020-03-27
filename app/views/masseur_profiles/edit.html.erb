@@ -1,6 +1,6 @@
 <h2>Complétez votre profil</h2>
 
-<%= form_with model: @masseur_profile do |f| %>
+<%= form_with model: @masseur_profile, local: true do |f| %>
 
   <div class="form-group mb-2">
     Prénom : <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %><br/>
