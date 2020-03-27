@@ -36,7 +36,8 @@
     <div class="container space-2">
       <h3 class="mb-5">Complétez le profil de votre entreprise afin de pouvoir effectuer une réservation.</h3>
       <!-- Personal Info Form -->
-      <%= form_with model: @company_profile, class: "js-validate" do |f| %>
+      <%= form_with model: @company_profile, class: "js-validate", local: true do |f| %>
+      <%= render partial: "layouts/error", locals: { resource: @company_profile } %>
         <div class="row">
           <!-- Input -->
           <div class="col-sm-6 mb-3">
@@ -61,7 +62,7 @@
               </label>
 
               <div class="form-group">
-                <%= f.text_field :business_line, class: 'form-control', placeholder: 'Secteur d\'activité', value: @company_profile.name %>
+                <%= f.text_field :business_line, class: 'form-control', placeholder: 'Secteur d\'activité', value: @company_profile.business_line %>
                 <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
               </div>
             </div>
@@ -75,7 +76,7 @@
               </label>
 
               <div class="form-group">
-                <%= f.text_field :city, class: 'form-control', placeholder: 'Ville', value: @company_profile.name %>
+                <%= f.text_field :city, class: 'form-control', placeholder: 'Ville', value: @company_profile.city %>
                 <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
               </div>
             </div>
@@ -89,7 +90,7 @@
               </label>
 
               <div class="form-group">
-                <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Numéro de téléphone', value: @company_profile.name %>
+                <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Numéro de téléphone', value: @company_profile.phone_number %>
                 <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
               </div>
             </div>

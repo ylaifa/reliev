@@ -36,7 +36,8 @@
     <div class="container space-2">
       <h3 class="mb-5">Complétez votre profil afin de pouvoir recevoir des réservations.</h3>
       <!-- Personal Info Form -->
-      <%= form_with model: @masseur_profile, class: "js-validate" do |f| %>
+      <%= form_with model: @masseur_profile, class: "js-validate", local: true do |f| %>
+      <%= render partial: "layouts/error", locals: { resource: @masseur_profile } %>
         <div class="row">
           <!-- Input -->
           <div class="col-sm-5 mb-3">
