@@ -1,2 +1,52 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <br><br><br>
+        <%= form_for @event, url: event_path(params[:id]), method: :put do |f| %>
+        <%= render partial: "layouts/error", locals: { resource: @event } %>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Modifier mon évènement:</h1>
+            <div class="field">
+                <%= f.label :titre, "Intitulé:" %><br />
+                <%= f.text_field :title, class: "form-control" %>
+            </div> 
+            <div class="field">
+                <%= f.label :description, "Description:" %><br />
+                <%= f.text_area :description, class: "form-control" %>
+            </div>
+
+             <div class="field">
+                <%= f.label :nombre_de_participants, "Nombre maximum de participants :" %><br />
+                <%= f.text_field :maximum_number_of_participation, class: "form-control" %>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 mb-3">
+                    <div class="js-form-message">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-grey transition-3d-hover dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <label id="nameLabel" class="form-label">
+                            Choisissez votre moment :
+                            <span class="text-danger">*</span>
+                        </label>
+                        </button>       
+                        <div class="form-group">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
+                            <p class="dropdown-item">
+                            <%= f.check_box(:moment, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
+                            </p>
+                            <% end %>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="actions mt-5">
+                <%= f.submit "Modifier", class: "btn btn-lg btn-primary btn-block" %>
+            </div>                
+        <% end %>
+    </div>
+  </div>
+</div>

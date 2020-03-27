@@ -42,7 +42,7 @@
             <!-- Logged Masseur buttons -->
             <% elsif masseur_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Mon espace",  masseur_profile_path(current_masseur), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+                <%= link_to "Mon espace",  masseur_profile_path(current_masseur.masseur_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
               </li>
               <li class="nav-item">
                 <%= link_to(destroy_masseur_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
@@ -54,7 +54,7 @@
             <!-- Logged Company buttons -->
             <% elsif company_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Mon espace",  company_profile_path(current_company), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
+                <%= link_to "Mon espace",  company_profile_path(current_company.company_profile), class: "nav-link u-header__nav-link u-header__nav-link-toggle" %>
               </li>
               <li class="nav-item">
                 <%= link_to(destroy_company_session_path, :method => :delete, class: "btn btn-sm btn-light transition-3d-hover") do %>        
