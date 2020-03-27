@@ -39,7 +39,7 @@
       <%= form_with model: @masseur_profile, class: "js-validate" do |f| %>
         <div class="row">
           <!-- Input -->
-          <div class="col-sm-4 mb-3">
+          <div class="col-sm-5 mb-3">
             <div class="js-form-message">
               <label id="nameLabel" class="form-label">
                 Prénom
@@ -54,7 +54,7 @@
           </div>
           <!-- End Input -->
           <!-- Input -->
-          <div class="col-sm-4 mb-3">
+          <div class="col-sm-5 mb-3">
             <div class="js-form-message">
               <label id="nameLabel" class="form-label">
                 Nom
@@ -92,72 +92,108 @@
 
         <div class="row">
           <!-- Input -->
-          <div class="col-sm-8 mb-3">
+          <div class="col-sm-10 mb-3">
             <div class="js-form-message">
               <label id="nameLabel" class="form-label">
                 Description
                 <span class="text-danger">*</span>
               </label>
-
-              <div class="form-group">
-                <%= f.text_area :description, class: 'form-control', placeholder: 'Présentez-vous', rows: '4', value: @masseur_profile.description %>              </div>
+              <center>
+                <div class="form-group">
+                  <%= f.text_area :description, class: 'form-control', placeholder: 'Présentez-vous', rows: '4', value: @masseur_profile.description %>
+                </div>
+              </center>
             </div>
           </div>
         </div>
 
-        <div class="row">
-          <!-- Input -->
-          <div class="col-sm-8 mb-3">
-            <div class="js-form-message">
-              <label id="nameLabel" class="form-label">
-                Type de massage que vous souhaitez proposer :
-                <span class="text-danger">*</span>
-              </label>
 
-              <div class="form-group">
-                <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
-                  <%= f.check_box(:massage_types, {:multiple => true}, massage_type, nil) %> <small><%= massage_type %></small><br>
-                <% end %>
+
+
+
+        <center>
+          <!-- one line checkbox-divs -->
+          <div class="row container space-2">
+            <!-- Input -->
+            <div class="row">
+              <div class="">
+                <div class="js-form-message">
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-grey transition-3d-hover dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <label id="nameLabel" class="form-label">
+                        Type de massage que vous souhaitez proposer :
+                        <span class="text-danger">*</span>
+                      </label>
+                    </button>       
+                    <div class="form-group">
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+                          <p class="dropdown-item">
+                            <%= f.check_box(:massage_types, {:multiple => true}, massage_type, nil) %> <small><%= massage_type %></small><br>
+                          </p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+            <!-- end input -->
 
-        <div class="row">
-          <!-- Input -->
-          <div class="col-sm-8 mb-3">
-            <div class="js-form-message">
-              <label id="nameLabel" class="form-label">
-                Disponibilités que vous souhaitez proposer :
-                <span class="text-danger">*</span>
-              </label>
-
-              <div class="form-group">
-                <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
-                  <%= f.check_box(:time_slots, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
-                <% end %>
+              <!-- Input -->
+              <div class="row">
+                <div class="col-sm-3 mb-3">
+                  <div class="js-form-message">
+                    <div class="dropdown">
+                      <button class="btn btn-sm btn-grey transition-3d-hover dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <label id="nameLabel" class="form-label">
+                          Disponibilités que vous souhaitez proposer :
+                          <span class="text-danger">*</span>
+                        </label>
+                      </button>       
+                      <div class="form-group">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
+                          <p class="dropdown-item">
+                            <%= f.check_box(:time_slots, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
+                          </p>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+              <!-- end input -->
 
-        <div class="row">
-          <!-- Input -->
-          <div class="col-sm-8 mb-3">
-            <div class="js-form-message">
-              <label id="nameLabel" class="form-label">
-                Ville dans laquelle vous souhaitez exercer :
-                <span class="text-danger">*</span>
-              </label>
-
-              <div class="form-group">
-                <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
-                  <%= f.radio_button(:working_place, working_place) %> <small><%= working_place %></small><br>
-                <% end %>
+              <!-- Input -->
+              <div class="row">
+                <div class="col-sm-3 mb-3">
+                  <div class="js-form-message">
+                    <div class="dropdown">
+                      <button class="btn btn-sm btn-grey transition-3d-hover dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <label id="nameLabel" class="form-label">
+                          Ville dans laquelle vous souhaitez exercer :
+                          <span class="text-danger">*</span>
+                        </label>
+                      </button>       
+                      <div class="form-group">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
+                          <p class="dropdown-item">
+                            <%= f.radio_button(:working_place, working_place) %> <small><%= working_place %></small><br>
+                          </p>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+              <!-- end input -->
           </div>
-        </div>
+          <!-- end one line checkbox-divs -->
+        </center>
 
         <%= f.submit "Enregistrer", class: "btn btn-sm btn-primary transition-3d-hover" %>
       <% end %>
