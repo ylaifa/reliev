@@ -6,7 +6,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :masseur
       t.string :participating_employees, array: true, default: []
       t.string :moment
-      t.interger :maximum_number_of_participation
+      t.integer :maximum_number_of_participation
       t.belongs_to :company, index: true
 
       t.timestamps
