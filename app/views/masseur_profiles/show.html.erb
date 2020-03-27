@@ -37,20 +37,15 @@
               </div>
 
               <div class="mb-3">
+                <% if (@masseur_profile.first_name == nil) || (@masseur_profile.last_name == nil) || (@masseur_profile.description == nil) || (@masseur_profile.working_place == nil) || (@masseur_profile.massage_types == nil) || (@masseur_profile.time_slots == nil) || (@masseur_profile.pricing == nil) %>
+                <p>Vous n'avez pas encore précisé le nom de votre nom. <br/>Vous pouvez le faire via la rubrique 
+                  <%= link_to "Editer mon profil", edit_masseur_profile_path %>
+                </p>
+              <% else %>
                 <h1 class="h6 font-weight-medium mb-0"><%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %></h1>
                 <small class="d-block text-muted"><%= ["Masseur", "Kiné"].sample %></small>
+              <% end %>
               </div>
-
-              <div class="mb-2">
-                <a class="btn btn-sm btn-soft-primary transition-3d-hover" href="#">
-                  <span class="far fa-envelope mr-2"></span>
-                  Send a Message
-                </a>
-              </div>
-
-              <a class="text-secondary small" href="#">
-                <i class="far fa-flag mr-1"></i> Report this user
-              </a>
             </div>
           </div>
           <!-- End Profile Card -->
@@ -193,7 +188,7 @@
                     <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
                     <div class="media-body text-lh-sm">
                       <span class="d-block mb-1">Phone number:</span>
-                      <a href="#">+44 (0161) 347 8854</a>
+                      <a href="#">+336 06 00 00 10</a>
                     </div>
                   </div>
                 </li>
