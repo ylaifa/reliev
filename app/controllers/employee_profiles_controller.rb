@@ -3,7 +3,10 @@ class EmployeeProfilesController < ApplicationController
   before_action :check_privileges!, only: [:show, :edit]
 
   def show
-    @employee_profile = EmployeeProfile.find(params[:id])
+    @employee_profile = EmployeeProfile.find_by(employee_id: params[:id])
+    if @employee_profile == nil
+      @employee_profile = EmployeeProfile.find(params[:id])
+    end
   end
 
   def edit

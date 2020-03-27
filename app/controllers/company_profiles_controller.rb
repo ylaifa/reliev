@@ -3,7 +3,11 @@ class CompanyProfilesController < ApplicationController
   before_action :check_privileges!, only: [:show, :edit]
 
   def show
-    @company_profile = CompanyProfile.find(params[:id])
+    # @company_profile = CompanyProfile.find(params[:id])
+    @company_profile = CompanyProfile.find_by(company_id: params[:id])
+    if @company_profile == nil
+      @company_profile = CompanyProfile.find(params[:id])
+    end
   end
 
   def edit
