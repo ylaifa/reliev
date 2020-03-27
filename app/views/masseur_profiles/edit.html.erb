@@ -1,27 +1,166 @@
-<h2>Complétez votre profil</h2>
+<main id="content" role="main">
+  <!-- Breadcrumb Section -->
+  <div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+          <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <li class="breadcrumb-item"><%= link_to "Acceuil", root_path, class: "breadcrumb-link" %></li>
+              <li class="breadcrumb-item"><%= link_to "Profil", masseur_profile_path, class: "breadcrumb-link" %></li>
+              <li class="breadcrumb-item active" aria-current="page">Compléter son profil</li>
+            </ol>
+            <!-- End Breadcrumb -->
+          </div>
+        </div>
 
-<%= form_with model: @masseur_profile, local: true do |f| %>
-
-  <div class="form-group mb-2">
-    Prénom : <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom' %><br/>
-    Nom : <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom' %><br/>
-    Tarif : <%= f.text_field :pricing, class: 'form-control', placeholder: 'Tarif' %><br/>
-    Description : <%= f.text_field :description, class: 'form-control', placeholder: 'Description' %><br>
-    Type(s) de massage(s) que vous souhaitez proposer : <br>
-      <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
-        <%= f.check_box(:massage_types, {:multiple => true}, massage_type, nil) %><%= massage_type %><br>
-      <% end %>
-    <br>
-    Vos disponibilités : <br>
-      <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
-        <%= f.check_box(:time_slots, {:multiple => true}, time_slot, nil) %><%= time_slot %><br>
-      <% end %>
-    <br>
-    Votre secteur d'activité : <br>
-      <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
-        <%= f.radio_button(:working_place, working_place) %><%= working_place %><br>
-      <% end %>
+        <div class="col-lg-7 order-lg-1">
+          <!-- User Info -->
+          <div class="media d-block d-sm-flex align-items-sm-center">
+            <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+              <%= image_tag "https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png", class:"img-fluid rounded-circle", alt:"Default Masseur Profile Picture" %>
+            </div>
+            <div class="media-body">
+              <h1 class="h3 text-white font-weight-medium mb-1">Complétez ou modifiez le profil</h1>
+              <span class="d-block text-white"><%= @masseur_profile.masseur.email %></span>
+            </div>
+          </div>
+          <!-- End User Info -->
+          <%= link_to "Voir mon profil", masseur_profile_path, class: "btn btn-sm btn-soft-white transition-3d-hover mt-4 mb-2" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <br>
-  <%= f.submit "Valider mon profil", class: 'btn btn-success' %>
-<% end %>
+  <div class="bg-light">
+    <div class="container space-2">
+      <h3 class="mb-5">Complétez votre profil afin de pouvoir recevoir des réservations.</h3>
+      <!-- Personal Info Form -->
+      <%= form_with model: @masseur_profile, class: "js-validate" do |f| %>
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-4 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Prénom
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <%= f.text_field :first_name, class: 'form-control', placeholder: 'Prénom', value: @masseur_profile.first_name %>
+                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
+              </div>
+            </div>
+          </div>
+          <!-- End Input -->
+          <!-- Input -->
+          <div class="col-sm-4 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Nom
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <%= f.text_field :last_name, class: 'form-control', placeholder: 'Nom', value: @masseur_profile.last_name %>
+              </div>
+            </div>
+          </div>
+          <!-- End Input -->
+        </div>
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-3 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Prix d'un créneaux horaire
+                <span class="text-danger">*</span>
+              </label>
+            
+              <div class="form-group input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-dark">
+                  €
+                  </span>
+                </div>
+                <%= f.text_field :pricing, class: 'form-control', placeholder: 'Prix en euros', value: @masseur_profile.pricing %>
+              </div>
+            </div>
+          </div>
+          <!-- End Input -->
+        </div>
+
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-8 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Description
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <%= f.text_area :description, class: 'form-control', placeholder: 'Présentez-vous', rows: '4', value: @masseur_profile.description %>              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-8 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Type de massage que vous souhaitez proposer :
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+                  <%= f.check_box(:massage_types, {:multiple => true}, massage_type, nil) %> <small><%= massage_type %></small><br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-8 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Disponibilités que vous souhaitez proposer :
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
+                  <%= f.check_box(:time_slots, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Input -->
+          <div class="col-sm-8 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Ville dans laquelle vous souhaitez exercer :
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
+                  <%= f.radio_button(:working_place, working_place) %> <small><%= working_place %></small><br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%= f.submit "Enregistrer", class: "btn btn-sm btn-primary transition-3d-hover" %>
+      <% end %>
+    </div>
+  </div>
+</main>
