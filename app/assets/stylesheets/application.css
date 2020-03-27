@@ -19,5 +19,6 @@
  *= require theme.css
  *= require main.css
  *= require footer.css
+ *= require jumbotron.css
  *= require masseur_panel.css
  */
