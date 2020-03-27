@@ -4,6 +4,7 @@ class CompanyProfilesController < ApplicationController
 
   def show
     @company_profile = CompanyProfile.find(params[:id])
+    @events = @company_profile.company.events
   end
 
   def edit
