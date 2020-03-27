@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources  :masseur_profiles,  only: [:index, :show, :edit, :update]
   resources  :company_profiles,  only: [:show, :edit, :update]
   resources  :employee_profiles, only: [:show, :edit, :update]
-
+  
+  resources :companies do
+    resources :events
+  end
   resources  :search, only: [:index]
 
   patch 'send_invite_to_employee', to: 'company_profiles#send_invite_to_employee'
