@@ -45,6 +45,7 @@
         
             <div class="actions mt-5">
                 <%= f.submit "Modifier", class: "btn btn-lg btn-primary btn-block" %>
+                <%= link_to 'Supprimer', event_path(@event), class: "btn btn-danger btn-block", method: :delete, data: { confirm: 'Êtes-vous sûr?' } %> 
             </div>                
         <% end %>
     </div>

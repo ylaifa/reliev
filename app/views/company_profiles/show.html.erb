@@ -97,14 +97,7 @@
         </div>
 
         <div class="col-lg-9">
-          <!-- User Details -->
-          <div class="mb-4">
-            <h2 class="h4">Bonjour <%= @company_profile.company.email %> <span class="badge badge-success ml-1">Pro</span></h2>
-            <h1></h1>
-            <h4 class="h6 text-secondary mb-0"><small>- Joined today</small></h4>
-          </div>
-          <!-- End User Details -->
-
+       
           <!-- Info -->
           <div class="mb-4">
             <% if @company_profile.name == nil %>
@@ -112,30 +105,10 @@
                 <%= link_to "Editer mon profil", edit_company_profile_path %>
               </p>
             <% else %>
-              <h4>Entreprise : <%= @company_profile.name %></h4>
+              <h4>Espace entreprise</h4>
             <% end %>
           </div>
           <!-- End Info -->
-
-          <!-- Collections -->
-          <ul class="list-inline d-flex align-items-center">
-            <li class="list-inline-item mb-3 mb-sm-0 mr-5">
-              <div class="d-flex align-items-center">
-                <span class="bg-warning text-white font-weight-medium rounded py-2 px-3 mr-2"><%= rand(0..400)%></span>
-                <div class="text-secondary">
-                  Vues
-                </div>
-              </div>
-            </li>
-            <li class="list-inline-item mb-3 mb-sm-0 mr-5">
-              <div class="d-flex align-items-center">
-                <div class="text-secondary">
-                  +3 Recommandations
-                </div>
-              </div>
-            </li>
-          </ul>
-          <!-- End Collections -->
 
           <hr class="my-7">
 
@@ -187,10 +160,10 @@
               <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
                 <li class="list-group-item pt-0 pb-4">
                   <div class="media">
-                    <span class="fas fa-globe list-group-icon mr-3"></span>
+                    <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
                     <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Langues disponibles :</span>
-                      <span class="d-block text-muted">Français, Anglais</span>
+                      <span class="d-block mb-1">Ville:</span>
+                      <a href="#"><%= @company_profile.city %></a>
                     </div>
                   </div>
                 </li>
@@ -218,13 +191,13 @@
           <h2 class="h4">Mes évènements : </h2>
           <div class="row">
             <% @events.each do |event|%>
-            <div class="card w-100">
+            <div class="card w-100 mb-3">
               <div class="card-body">
                 <h5 class="card-text"><%= event.title %></h5>
                 <blockquote class="blockquote mb-0">
                 <footer class="blockquote-footer">
                     Nombre de participants maximum : <%= event.maximum_number_of_participation %><br/></p>
-                    <p><small><cite title="Source Title"><%= event.created_at.strftime("A été crée le: %m/%d/%Y at %I:%M %p") %></cite></small>
+                    <p><small><cite title="Source Title"><%= event.created_at.strftime("A été crée le : %m/%d/%Y") %></cite></small>
                     <p><%= link_to "Editer mon évènement", edit_event_path(event), class: "btn btn-primary ml-2" %></p>
                 </footer>
                 </blockquote>
