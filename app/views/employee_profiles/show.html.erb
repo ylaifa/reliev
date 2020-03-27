@@ -92,32 +92,18 @@
           <!-- User Details -->
           <div class="mb-4">
             <h2 class="h4">Bonjour <%= @employee_profile.first_name %> <%= @employee_profile.last_name %></h2>
-            <h1></h1>
-            <h4 class="h6 text-secondary mb-0"><small>- Joined today</small></h4>
           </div>
           <!-- End User Details -->
 
           <!-- Info -->
           <div class="mb-4">
             <% if @employee_profile.first_name == nil %>
-              <p>Vous n'avez pas encore précisé le nom de votre nom. <br/>Vous pouvez le faire via la rubrique 
+              <p>Vous n'avez pas encore précisé votre nom. <br/>Vous pouvez le faire via la rubrique 
                 <%= link_to "Editer mon profil", edit_employee_profile_path %>
               </p>
             <% end %>
           </div>
           <!-- End Info -->
-
-          <!-- Collections -->
-          <ul class="list-inline d-flex align-items-center">
-            <li class="list-inline-item mb-3 mb-sm-0 mr-5">
-              <div class="d-flex align-items-center">
-                <div class="text-secondary">
-                  Vous avez profité de 4 massages.
-                </div>
-              </div>
-            </li>
-          </ul>
-          <!-- End Collections -->
 
           <hr class="my-7">
 
