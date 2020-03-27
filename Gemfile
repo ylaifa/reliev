@@ -26,6 +26,7 @@ gem 'pg_search'
 gem 'rubocop'
 gem 'table_print'
 gem 'jquery-rails'
+gem 'devise_invitable', '~> 2.0.0'
 
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
