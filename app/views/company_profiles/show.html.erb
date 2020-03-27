@@ -47,7 +47,7 @@
 
               <div class="mb-3">
                 <h1 class="h6 font-weight-medium mb-0"><%= @company_profile.name %></h1>
-                <small class="d-block text-muted"><%= ["Bureautique", "Télécommunication", "Presse", "Startup"].sample %></small>
+                <small class="d-block text-muted"><%= @company_profile.business_line %></small>
               </div>
             </div>
           </div>
@@ -149,8 +149,8 @@
                   <div class="media">
                     <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
                     <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Secteur d'activité :</span>
-                      <a href="#">France</a>
+                      <span class="d-block mb-1">Ville:</span>
+                      <a href="#"><%= @company_profile.city %></a>
                     </div>
                   </div>
                 </li>
@@ -165,8 +165,8 @@
                   <div class="media">
                     <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
                     <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Phone number:</span>
-                      <a href="#">+331 00 10 00 10</a>
+                      <span class="d-block mb-1">Téléphone:</span>
+                      <a href="#"><%= @company_profile.phone_number %></a>
                     </div>
                   </div>
                 </li>

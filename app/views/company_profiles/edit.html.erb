@@ -52,6 +52,48 @@
               </div>
             </div>
           </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Secteur d'activité
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <%= f.text_field :business_line, class: 'form-control', placeholder: 'Secteur d\'activité', value: @company_profile.name %>
+                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
+              </div>
+            </div>
+          </div>
+
+           <div class="col-sm-6 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Ville
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <%= f.text_field :city, class: 'form-control', placeholder: 'Ville', value: @company_profile.name %>
+                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
+              </div>
+            </div>
+          </div>
+
+           <div class="col-sm-6 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Numéro de téléphone
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Numéro de téléphone', value: @company_profile.name %>
+                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
+              </div>
+            </div>
+          </div>
           <!-- End Input -->
         </div>
         <%= f.submit "Enregistrer", class: "btn btn-sm btn-primary transition-3d-hover" %>
