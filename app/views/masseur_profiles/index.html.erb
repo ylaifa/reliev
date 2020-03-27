@@ -111,26 +111,6 @@
   <!-- Content Section -->
   <div class="bg-light">
     <div class="container space-2">
-      <div class="row justify-content-between align-items-center mb-4">
-        <!-- Masseurs quantity -->
-        <div class="col-sm-4 col-md-6 mb-3 mb-sm-0">
-          <h2 class="h6 mb-0">9 members found</h2>
-        </div>
-        <!-- End Masseurs quantity -->
-
-        <!-- Filter -->
-        <div class="col-sm-8 col-md-6 text-sm-right">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item">
-              <span class="btn btn-sm btn-soft-primary active">
-                <span class="fas fa-th-large"></span>
-              </span>
-            </li>
-          </ul>
-        </div>
-        <!-- End Filter -->
-      </div>
-
       <!-- display all cards -->
       <div class="display-cards space-around">
         <% if @masseur_profiles.any? %>
@@ -154,16 +134,11 @@
                       <% end %>
                     </span>
                   </h4>          
-                  <!-- <h4>Disponibilitée(s) : -->
-                    <!-- <span class="font-weight-light"> -->
-                      <!-- <% masseur_profile.time_slots.each do |time_slot| %> -->
-                        <!-- <br>- <%= time_slot %> -->
-                      <!-- <% end %> -->
-                    <!-- </span> -->
-                  <!-- </h4> -->
-                  <h4 class="text-lg-right">Prix : <%= masseur_profile.pricing %></h4>
-                  <h4 class="text-lg-right">Secteur d'activité : <%= masseur_profile.working_place %></h4><br><br><br>
-                  <a href="#" class="btn btn-primary">Voir le profil</a>
+                  <h4 class="text-lg-right">Tarif : <%= masseur_profile.pricing %> €</h4>
+                  <h4 class="text-lg-right">Ville : <%= masseur_profile.working_place %></h4><br><br><br>
+                  <% if current_company %>
+                    <%= link_to "Réserver un créneau", new_event_path, class: "btn btn-primary"%>
+                  <% end %>
                 </div>
               </div>
             </div>
