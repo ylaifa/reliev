@@ -27,7 +27,7 @@ class CompanyProfilesController < ApplicationController
   private 
 
   def company_profile_params 
-    params.require(:company_profile).permit(:name)
+    params.require(:company_profile).permit(:name, :city, :phone_number, :business_line)
   end
 
   def check_privileges!
