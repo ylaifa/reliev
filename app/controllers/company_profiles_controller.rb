@@ -15,6 +15,12 @@ class CompanyProfilesController < ApplicationController
       render :edit, alert: "Veuillez rentrer des champs valides."
     end
   end
+
+  def send_invite_to_employee
+    Employee.invite!(email: params[:email], company: current_company)
+    redirect_to company_profile_path(current_company.company_profile), notice: "L'invitation a été envoyée avec succès"
+  end
+
 end
 
 private 
