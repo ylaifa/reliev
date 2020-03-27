@@ -4,7 +4,7 @@
         <br><br><br>
         <%= form_for @event, url: events_path, method: :post do |f| %>
         <%= render partial: "layouts/error", locals: { resource: @event } %>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Créer un évènement:</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Créer un évènement :</h1>
             <div class="field">
                 <%= f.label :titre, "Intitulé:" %><br />
                 <%= f.text_field :title, class: "form-control" %>
