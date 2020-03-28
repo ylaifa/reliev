@@ -7,13 +7,13 @@
           <p class="card-text">Description : <span class="text-dark"><%= masseur.description %></span> </p>
           <p class="card-text">Ville :<span class="text-dark"> <%= masseur.working_place %></span></p>
           <p class="card-text">Tarif : <span class="text-dark"><%= masseur.pricing %> € </span></p>
-          <p class="card-text">Type de massage proposés :<span class="text-dark"> 
+          <p class="card-text">Type(s) de massage proposés :<span class="text-dark"> 
             <% masseur.massage_types.each do |massage_type| %> 
               <br><span class="ml-2 mt-2">• <%= massage_type %></span>
             <% end %>
             </span>
           </p>
-          <p class="card-text">Disponibilités :<span class="text-dark"> 
+          <p class="card-text">Disponibilité(s) :<span class="text-dark"> 
             <% masseur.time_slots.each do |slot| %> 
               <br><span class="ml-2">• <%= slot %></span>
             <% end %>
