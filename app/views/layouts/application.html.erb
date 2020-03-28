@@ -21,9 +21,17 @@
   <body>
     <div id="page-container">
       <%= render 'layouts/header' %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>  
-      <div id="content-wrap" class="mt-10">
+      <div id="content-wrap">
+        <% if notice %>
+          <div class="alert alert-success mb-0" role="alert">
+            <span class="container ml-md-8"><%= notice %></span>
+          </div>
+        <% end %> 
+        <% if alert %>
+          <div class="alert alert-danger mb-0" role="alert">
+            <span class="container ml-md-8"><%= alert %></span>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
       <%= render 'layouts/footer' %>
