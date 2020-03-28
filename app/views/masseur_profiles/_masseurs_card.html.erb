@@ -1,7 +1,7 @@
 <% if @masseur_profiles.any? %> 
   <% @masseur_profiles.each do |masseur| %>
     <div class="col-md-6 col-sm-12">
-      <div class="card mb-4 p-md-5">
+      <div class="card mb-4 p-md-5" id="masseur-card">
         <div class="card-body">
           <h4 class="card-title mb-4"><%= image_tag("Default-Profile-Male.jpg", class: "rounded", style: "width: 20%")%><span class="ml-3 align-top"><%= masseur.first_name %> <%= masseur.last_name %></span></h4>
           <p class="card-text">Description : <span class="text-dark"><%= masseur.description %></span> </p>
