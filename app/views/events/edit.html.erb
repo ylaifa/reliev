@@ -4,7 +4,7 @@
         <br><br><br>
         <%= form_for [@company, @event], url: company_event_path(params[:id]), method: :put do |f| %>
         <%= render partial: "layouts/error", locals: { resource: @event } %>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Modifier mon évènement:</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Modifier mon évènement avec :<br> <%= full_name(@masseur) %></h1>
             <div class="field">
                 <%= f.label :titre, "Intitulé:" %><br />
                 <%= f.text_field :title, class: "form-control" %>
@@ -45,7 +45,7 @@
         
             <div class="actions mt-5">
                 <%= f.submit "Modifier", class: "btn btn-lg btn-primary btn-block" %>
-                <%= link_to 'Supprimer', company_event_path(params[:company_id], params[:id]), class: "btn btn-danger btn-block", method: :delete, data: { confirm: 'Êtes-vous sûr?' } %> 
+                <%= link_to 'Supprimer', company_event_path(current_company, params[:id]), class: "btn btn-danger btn-block", method: :delete, data: { confirm: 'Êtes-vous sûr?' } %> 
             </div>                
         <% end %>
     </div>

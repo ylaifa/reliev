@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
         <br><br><br>
-        <%= form_for @event, url: events_path, method: :post do |f| %>
+        <%= form_for [@company, @event], url: company_events_path(current_company, masseur_profile_id: @masseur), method: :post do |f| %>
         <%= render partial: "layouts/error", locals: { resource: @event } %>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Créer un évènement :</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Créer un évènement avec :<br> <%= full_name(@masseur) %></h1>
             <div class="field">
                 <%= f.label :titre, "Intitulé:" %><br />
                 <%= f.text_field :title, class: "form-control" %>
@@ -30,11 +30,9 @@
                         </label>
                         </button>       
                         <div class="form-group">
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
-                            <p class="dropdown-item">
-                            <%= f.check_box(:moment, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
-                            </p>
+                        <div>
+                            <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>                        
+                                <%= f.check_box(:moment, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
                             <% end %>
                         </div>
                         </div>
