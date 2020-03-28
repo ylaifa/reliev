@@ -14,6 +14,21 @@
 }
 
 
+@media (max-width: 480px) {
+
+  .jumbotron .btn {
+    margin-top: 20px;
+    color: white;
+    background-color: #00c9a7;
+  }
+
+  .jumbotron-btn{
+    margin-top: 10px;
+  }
+  
+}
+
+
 @media (min-width: 768px) {
   .jumbotron h1 {
     font-size: 4em;
