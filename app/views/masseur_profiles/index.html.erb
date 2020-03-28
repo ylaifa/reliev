@@ -9,7 +9,7 @@
             <!-- Breadcrumb -->
             <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
               <li class="breadcrumb-item">
-                <%= link_to "Menu", root_path, class: "breadcrumb-link" %>
+                <%= link_to "Accueil", root_path, class: "breadcrumb-link" %>
               </li>
               <li class="breadcrumb-item">
                 <%= link_to "Voir les masseurs", masseur_profiles_path, class: "breadcrumb-link" %>
@@ -20,23 +20,23 @@
         </div>
         <div class="col-lg-7 order-lg-1">
           <!-- Page name -->
-          <h1 class="h2 text-white font-weight-medium mb-1">Masseurs</h1>
+          <h1 class="h2 text-white font-weight-medium mb-1">Nos masseurs</h1>
           <!-- End Page name -->
         </div>
       </div>
     </div>
 
-    <div class="container space-bottom-1 space-bottom-lg-0">
-      <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+    <div class="container space-bottom-1 space-bottom-lg-0 pb-3">
+      <div class="d-lg-flex justify-content-lg-between align-items-lg-center pb-5">
         <!-- Blue section -->
         <div class="u-header u-header--bg-transparent-lg z-index-4">
           <p class="h4 text-white font-weight-medium mb-1">Critères de recherche : <br></p>
           <!-- Show wanted masseurs -->
           <% if params[:query].present?%>
             <% params[:query].each do |query_param| %>
-                - <%= query_param %><br>
+                <p class="text-white ml-3">● <%= query_param %><p>
             <% end %>
-            <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-success'%>
+            <%= link_to "Voir tous les masseurs", masseur_profiles_path, class:"btn btn-outline-light btn-sm mt-2"%>
           <!-- End Show wanted masseurs -->
 
           <!-- Show Masseurs filter -->
@@ -44,7 +44,7 @@
           <div class="u-header__section bg-transparent">
               <div class="one-line-display">
 
-                <%= form_with url: masseur_profiles_path, method: :get, local: true do |f| %>
+                <%= form_with url: masseur_profiles_path, method: :get do |f| %>
                 <ul>
                   <!-- Massage types selection -->
                   <li>
@@ -67,8 +67,8 @@
                   <!-- Massage place selection -->
                   <li>
                     <div class="dropdown">
-                      <a class="btn dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Lieu de prise en charge
+                      <a class="btn dropdown-toggle text-light mr-md-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ville
                       </a>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
@@ -85,16 +85,9 @@
                   <!-- Submit button -->
                   <li>
                     <span> </span>
-                    <%= f.submit "Recherche", class: 'btn btn-sm btn-soft-white transition-3d-hover' %>
+                    <%= f.submit "Rechercher", class: 'btn btn-sm btn-soft-white transition-3d-hover mr-md-2' %>
                   </li>
                   <!-- End Submit button -->
-
-                  <!-- Masseurs path button -->
-                  <li>
-                    <span> </span>
-                    <%= link_to "Voir tous les masseurs", masseur_profiles_path, class: 'btn btn-sm btn-soft-white transition-3d-hover'%>
-                  </li>
-                  <!-- End Masseurs path button -->
                 </ul>
                 <% end %>                
               </div>
@@ -107,53 +100,17 @@
     </div>
   </div>
   <!-- End Breadcrumb Section -->
-
-  <!-- Content Section -->
   <div class="bg-light">
     <div class="container space-2">
       <!-- display all cards -->
-      <div class="display-cards space-around">
-        <% if @masseur_profiles.any? %>
-          <% @masseur_profiles.each do |masseur_profile| %>
-            <div id="masseur-card" class="card text-light" style="width:500px">
-              <img class="card-img-top" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="Card image">
-              <div class="mid-space max-100">
-                <div class="card-img-overlay">
-                  <h4 class="card-title font-weight-bold">
-                    <%= masseur_profile.first_name %> <%= masseur_profile.last_name %>
-                  </h4>
-                  <h4>
-                    Description : 
-                    <span class="font-weight-light"><%= masseur_profile.description %>
-                    </span>
-                  </h4>
-                  <h4>Type(s) de massage proposé : 
-                    <span class="font-weight-light">
-                      <% masseur_profile.massage_types.each do |massage_type| %>
-                        <br>- <%= massage_type %>
-                      <% end %>
-                    </span>
-                  </h4>          
-                  <h4 class="text-lg-right">Tarif : <%= masseur_profile.pricing %> €</h4>
-                  <h4 class="text-lg-right">Ville : <%= masseur_profile.working_place %></h4><br><br><br>
-                  <% if current_company %>
-                    <%= link_to "Réserver un créneau", new_event_path, class: "btn btn-primary"%>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-
-
-        <!-- No Masseur found page -->
-        <% else %>
-          <h4>Aucun masseur ne correspond à votre recherche</h4>
-        <% end %>
-        <!-- End No Masseur found page -->
-    </div>
+      <div class="display-cards space-around" id="masseurs">
+        <%= render "masseurs_card" %>
+      </div>
     <!-- end display all cards -->
     </div>
   </div>
   <!-- end content section -->
 </main>
+</main>
+
 <!-- ========== END MAIN ========== -->
