@@ -1,0 +1,5 @@
+<% if params[:query].present? %> 
+  <% params[:query].each do |query_param| %>
+    <p class="text-white ml-3" id="search-term">• <%= query_param %><p>
+  <% end %>
+<% end %>

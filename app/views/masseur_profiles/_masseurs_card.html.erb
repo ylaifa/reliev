@@ -1,33 +1,31 @@
 <% if @masseur_profiles.any? %> 
-  <% @masseur_profiles.each do |masseur_profile| %>
-    <div id="masseur-card" class="card text-light" style="width:500px">
-      <%= image_tag("https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80", class:"card-img-top") %>
-      <div class="mid-space max-100">
-        <div class="card-img-overlay">
-          <h4 class="card-title font-weight-bold">
-            <%= masseur_profile.first_name %> <%= masseur_profile.last_name %>
-          </h4>
-          <h4>
-            Description : 
-            <span class="font-weight-light"><%= masseur_profile.description %>
+  <% @masseur_profiles.each do |masseur| %>
+    <div class="col-6">
+      <div class="card mb-4 p-3">
+        <div class="card-body">
+          <h4 class="card-title"><%= masseur.first_name %> <%= masseur.last_name %></h5>
+          <p class="card-text">Description : <span class="text-dark"><%= masseur.description %></span> </p>
+          <p class="card-text">Ville :<span class="text-dark"> <%= masseur.working_place %></span></p>
+          <p class="card-text">Tarif : <span class="text-dark"><%= masseur.pricing %> € </span></p>
+          <p class="card-text">Type de massage proposés :<span class="text-dark"> 
+            <% masseur.massage_types.each do |massage_type| %> 
+              <br><span class="ml-2 mt-2">• <%= massage_type %></span>
+            <% end %>
             </span>
-          </h4>
-          <h4>Type(s) de massage proposé : 
-            <span class="font-weight-light">
-              <% masseur_profile.massage_types.each do |massage_type| %>
-                <br>- <%= massage_type %>
-              <% end %>
+          </p>
+          <p class="card-text">Disponibilités :<span class="text-dark"> 
+            <% masseur.time_slots.each do |slot| %> 
+              <br><span class="ml-2">• <%= slot %></span>
+            <% end %>
             </span>
-          </h4>          
-          <h4 class="text-lg-right">Tarif : <%= masseur_profile.pricing %> €</h4>
-          <h4 class="text-lg-right">Ville : <%= masseur_profile.working_place %></h4><br><br><br>
+          </p>
           <% if current_company %>
-            <%= link_to "Réserver un créneau", new_event_path, class: "btn btn-primary"%>
+            <%= link_to "Faire une réservation", new_event_path, class: "btn btn-success btn-sm float-right" %>
           <% end %>
         </div>
       </div>
     </div>
-    <% end %>
+  <% end %>
 <% else %>
   <h4 class="mt-md-10 mb-md-10">Aucun masseur ne correspond à votre recherche</h4>
 <% end %>

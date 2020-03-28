@@ -32,15 +32,7 @@
         <div class="u-header u-header--bg-transparent-lg z-index-4">
           <p class="h4 text-white font-weight-medium mb-1">Critères de recherche : <br></p>
           <!-- Show wanted masseurs -->
-          <% if params[:query].present?%>
-            <% params[:query].each do |query_param| %>
-                <p class="text-white ml-3">● <%= query_param %><p>
-            <% end %>
-            <%= link_to "Voir tous les masseurs", masseur_profiles_path, class:"btn btn-outline-light btn-sm mt-2"%>
-          <!-- End Show wanted masseurs -->
-
-          <!-- Show Masseurs filter -->
-          <% else %>
+          <p class="text-white ml-3" id="search-term"><p>
           <div class="u-header__section bg-transparent">
               <div class="one-line-display">
 
@@ -83,7 +75,7 @@
                   <!-- End Massage place selection -->
 
                   <!-- Submit button -->
-                  <li>
+                  <li id="btns">
                     <span> </span>
                     <%= f.submit "Rechercher", class: 'btn btn-sm btn-soft-white transition-3d-hover mr-md-2' %>
                   </li>
@@ -92,7 +84,6 @@
                 <% end %>                
               </div>
           </div>
-          <% end %>
           <!-- End Show Masseurs filter -->
         </div>
         <!-- End Blue section -->
@@ -103,7 +94,7 @@
   <div class="bg-light">
     <div class="container space-2">
       <!-- display all cards -->
-      <div class="display-cards space-around" id="masseurs">
+      <div class="row" id="masseurs">
         <%= render "masseurs_card" %>
       </div>
     <!-- end display all cards -->
