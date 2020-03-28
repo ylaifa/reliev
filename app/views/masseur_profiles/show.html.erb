@@ -38,12 +38,34 @@
 
               <div class="mb-3">
                 <% if (@masseur_profile.first_name == nil) || (@masseur_profile.last_name == nil) || (@masseur_profile.description == nil) || (@masseur_profile.working_place == nil) || (@masseur_profile.massage_types == nil) || (@masseur_profile.time_slots == nil) || (@masseur_profile.pricing == nil) %>
-                <p>Vous n'avez pas encore précisé le nom de votre nom. <br/>Vous pouvez le faire via la rubrique 
+                <p>Vous n'avez pas encore précisé votre nom. <br/>Vous pouvez le faire via la rubrique 
                   <%= link_to "Editer mon profil", edit_masseur_profile_path %>
                 </p>
               <% else %>
                 <h1 class="h6 font-weight-medium mb-0"><%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %></h1>
-                <small class="d-block text-muted"><%= ["Masseur", "Kiné"].sample %></small>
+                <small class="d-block text-muted">
+                  <!-- Masseur has multiple massage types -->
+                  <% if current_masseur.masseur_profile.massage_types.count > 1 %>
+                    <span>Massages : </span>
+                    <% current_masseur.masseur_profile.massage_types.each do |massage_type| %>
+                      <% if massage_type == current_masseur.masseur_profile.massage_types.last %>
+                        <span><%= massage_type %></span>
+                      <% else %>
+                        <span><%= massage_type %>, </span>                      
+                      <% end %>
+                    <% end %>
+
+                  <!-- Masseur has one massage type -->
+                  <% elsif masseur_profile.massage_types.count == 1 %>
+                    <% current_masseur.masseur_profile.massage_types.each do |massage_type| %>
+                      <span><%= massage_type %> </span>
+                    <% end %>
+
+                  <!-- Masseur has no massage type -->
+                  <% else %>
+                    <p>Veuillez <%= link_to "compléter", edit_masseur_profile_path %> cette information.</p>
+                  <% end %>
+                </small>
               <% end %>
               </div>
             </div>
@@ -108,39 +130,19 @@
         <div class="col-lg-9">
           <!-- User Details -->
           <div class="mb-4">
-            <h2 class="h4">Bonjour <%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %> <span class="badge badge-success ml-1">Pro</span></h2>
+            <h2 class="h4">Bonjour <%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %></h2>
             <h1></h1>
-            <h4 class="h6 text-secondary mb-0"><%= @masseur_profile.working_place %><small>- Joined in July 2017</small></h4>
+            <h4 class="h6 text-secondary mb-0"><%= @masseur_profile.working_place %></h4>
           </div>
           <!-- End User Details -->
 
           <!-- Info -->
           <div class="mb-4">
             <p>Description : <br/><%= @masseur_profile.description %></p>
-            <h6>Tarif : <%= @masseur_profile.pricing %></h6>
+            <h6>Tarif :  <span class="badge badge-success ml-1"> <%= @masseur_profile.pricing %> €</span></h6>
 
           </div>
           <!-- End Info -->
-
-          <!-- Collections -->
-          <ul class="list-inline d-flex align-items-center">
-            <li class="list-inline-item mb-3 mb-sm-0 mr-5">
-              <div class="d-flex align-items-center">
-                <span class="bg-warning text-white font-weight-medium rounded py-2 px-3 mr-2"><%= rand(0..400)%></span>
-                <div class="text-secondary">
-                  Vues
-                </div>
-              </div>
-            </li>
-            <li class="list-inline-item mb-3 mb-sm-0 mr-5">
-              <div class="d-flex align-items-center">
-                <div class="text-secondary">
-                  +3 Recommandations
-                </div>
-              </div>
-            </li>
-          </ul>
-          <!-- End Collections -->
 
           <hr class="my-7">
 
