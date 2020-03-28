@@ -130,19 +130,14 @@
           <h2 class="h4">Inviter un salarié : </h2>
           <p>Inviter un salarié de votre entreprise afin que celui-ci puisse s'inscrire et réserver une séance de massage.</p>
           <%= form_with(url: "/send_invite_to_employee", method: "patch", local: true) do %>
-            <div class="form-row mb-5">
-              <div class="col-md-4 mb-3">
-                <div class="form-group">
-                  <%= label_tag(:q, "Email:") %>
-                  <ul class="row">
-                    <li>
-                    <%= text_field_tag(:email) %>
-                  </li>
-                  <li>
-                    <%= submit_tag("Envoyer l'invitation", class: "btn btn-success btn-sm mt-3") %>
-                  </li>
-                  </ul>
-                </div>
+            <%= label_tag(:q, "Email:") %>
+            <div class="form-row align-items-center">
+              <div class="col-sm-5 my-1">
+                <label class="sr-only" for="inlineFormInputName">Name</label>
+                <%= text_field_tag(:email, "", class: "form-control") %>
+              </div>
+              <div class="col-auto my-1">
+                <%= submit_tag "Envoyer l'invitation", class: "btn btn-success btn-sm mt-0" %>
               </div>
             </div>
           <% end %>
