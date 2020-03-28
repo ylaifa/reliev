@@ -1,0 +1,12 @@
+#card-massage-types:hover {
+  transition: all .3s ease-in-out;
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px 0 rgba(51, 51, 51, 0.2), 0 6px 6px 0 rgba(80, 80, 80, 0.19);
+  }
+
+#card-massage-types {
+  transition: all .3s ease-in-out;
+  transform: scale(1.0);
+  border: none;
+  border-radius: 10px;
+}
