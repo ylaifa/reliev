@@ -1,0 +1,16 @@
+<!-- Portfolio Section -->
+<div class="text-center">
+  <span class="u-label u-label--sm u-label--success mb-2 text-center mt-8">Nos différents services</span>
+  <h3 class="display-6 mb-5 mt-2">Les types de massage que nous vous proposons :</h3>
+  <div class="row mt-4 text-center">
+    <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
+    <div class="col-lg-4 col-sm-6 text-center">
+      <div class="card m-4 pr-4 pl-4 pb-4">
+        <p class="mt-3"><span class="text-success">~</span> <%= massage_type %> <span class="text-success">~</span></p>
+        <small class="text-muted justify-content font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        </small>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
