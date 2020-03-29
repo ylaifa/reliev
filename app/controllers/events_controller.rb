@@ -18,6 +18,26 @@ class EventsController < ApplicationController
   def create
     @masseur = MasseurProfile.find(params[:masseur_profile_id])
     @event = Event.new(event_params.merge(company: current_company, masseur: @masseur.id))
+
+    # Amount in cents
+    @amount = @masseur.pricing * 100
+
+    customer = Stripe::Customer.create({
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    })
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      description: 'Reliev reservation',
+      currency: 'eur',
+    })
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_company_event_path(current_company, masseur_profile_id: @masseur.id)
+
     if @event.save
       redirect_to company_profile_path(current_company.company_profile), notice: "Votre évènement a bien été créé."
     else
