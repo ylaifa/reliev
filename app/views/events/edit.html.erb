@@ -26,7 +26,7 @@
                         <div class="form-group">
                         <div>
                             <% @masseur.time_slots.each do |time_slot| %>                        
-                                <%= f.check_box(:moment, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
+                                <%= f.radio_button(:moment, time_slot) %> <small><%= time_slot %></small><br>
                             <% end %>
                         </div>
                         </div>

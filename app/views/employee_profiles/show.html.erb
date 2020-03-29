@@ -39,14 +39,19 @@
           <div class="card p-1 mb-4">
             <div class="card-body text-center">
               <div class="mb-3 mt-3">
-                <h1 class="h6 font-weight-medium mb-0"><%= @employee_profile.first_name %> <%= @employee_profile.last_name %></h1>
+                <center>
+                  <div class="u-lg-avatar position-relative mb-3 mb-sm-0">
+                    <%= image_tag "https://www.kbl.co.uk/wp-content/uploads/2017/11/Default-Profile-Male.jpg", class:"img-fluid rounded-circle ml-2 mx-auto d-block", alt:"Default Employee Profile Picture" %>
+                  </div>   
+                  <h1 class="mt-3 h6 font-weight-medium mb-0"><%= @employee_profile.first_name %> <%= @employee_profile.last_name %></h1>
+                </center>
               </div>
             </div>
           </div>
           <!-- End Profile Card -->
 
           <!-- Profile informations -->
-          <div class="card mb-4">
+          <div class="card mb-4 pb-3">
             <div class="card-header pt-4 pb-3 px-0 mx-4">
               <h3 class="h6 mb-0">Profil</h3>
             </div>
@@ -56,17 +61,28 @@
               <div class="media">
                 <span class="fas fa-envelope list-group-icon mr-3"></span>
                 <div class="media-body text-lh-sm">
-                  <span class="d-block mb-1">Email : <span class="text-secondary"><%= @employee_profile.employee.email %></span></span>
+                  <span class="d-block mb-1">Email : 
+                  <small class="text-secondary"><%= @employee_profile.employee.email %></small></span>
                 </div>
               </div>
               <!-- End Profile information -->
-            </div>            
+            </div>  
+            <div class="card-body pt-2 pb-4 px-4">
+              <!-- Profile information -->
+              <div class="media">
+                <span class="fas fa-building list-group-icon mr-3"></span>
+                <div class="media-body text-lh-sm">
+                  <span class="d-block mb-1">Entreprise : 
+                  <span class="text-secondary"><%= @employee_profile.employee.company.company_profile.name %></span></span>
+                </div>
+              </div>
+              <!-- End Profile information -->
+            </div> 
+            <div class="card-body pt-2 pb-4 px-4">
+              <%= link_to "Editer mon profil", edit_employee_profile_path %>     
+            </div>
           </div>
           <!-- End Profile informations -->
-
-          <center>
-            <%= link_to "Editer mon profil", edit_employee_profile_path %>
-          </center>
         </div>
         <!-- End Aside cards -->
 
@@ -89,12 +105,33 @@
 
           <hr class="my-7">
 
-          <h2 class="h4">Mes évènements : </h2>
-
-          <hr class="my-7">
-
-          <h2 class="h4">Évènements proposés par l'entreprise :</h2>
-
+          <h2 class="h4">Les réservations de mon entreprise :</h2>
+            <% if @employee_profile.employee.company.events == nil %>
+              <p>Votre entreprise n'a aucune réservtation de prévue pour le moment.</p>
+            <%else%>
+              <div class="row mt-md-5">
+            <% @employee_profile.employee.company.events.each do |event|%>
+            <div class="card w-100 mb-5">
+              <div class="card-body">
+                <h5 class="card-text mb-3"><%= event.title %></h5>
+                <p>Masseur : <span class="text-dark"><%= MasseurProfile.find(event.masseur).first_name %> <%= MasseurProfile.find(event.masseur).last_name %></span></p>
+                <p>Description : <span class="text-dark"><%= event.description %></span></p>
+                <p>Moment : <span class="text-dark"><%= event.moment %></span></p>
+                <p>Nombre de salariés inscrits : <span class="text-dark"><%= event.participating_employees.count %></span></p>
+                <p class="mb-5">Nombre de participants maximum : <span class="text-dark"><%= event.maximum_number_of_participation %></span><br/></p>
+                <center>
+                  <%if event.participating_employees.count < event.maximum_number_of_participation && event.participating_employees.exclude?(@employee_profile.employee.email) %>
+                    <%= link_to "Participer à l'évènement", company_event_path(current_employee.company, event, event: {title: event.title, description: event.description, maximum_number_of_participation: event.maximum_number_of_participation, moment: event.moment}), method: :put, class: "btn btn-success" %>
+                  <% elsif event.participating_employees.include?(@employee_profile.employee.email)%>
+                    <p class="text-info">Vous êtes inscrit.</p>
+                  <%else%>
+                    <p class="text-danger">- Cet événement est complet. -</p>
+                  <%end%>
+                </center>
+              </div>
+            </div>
+            <% end %>
+            <%end%>
           <hr class="my-7">
 
         </div>

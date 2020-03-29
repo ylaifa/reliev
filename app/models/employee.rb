@@ -1,6 +1,5 @@
 class Employee < ApplicationRecord
   after_create :create_profile
-  after_create :welcome_send
  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
