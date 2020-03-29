@@ -13,12 +13,11 @@ Rails.application.routes.draw do
   resources  :search, only: [:index]
 
   patch 'send_invite_to_employee', to: 'company_profiles#send_invite_to_employee'
-  patch 'add_employee_to_event', to: 'employee_profiles#add_employee_to_event'
 
   get 'about',   to: 'static_pages#about'
   get 'contact', to: 'static_pages#contact'
   get 'home_page', to: 'welcome#index'
 
-  root :to => 'passthrough#index'
+  root to: 'passthrough#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
