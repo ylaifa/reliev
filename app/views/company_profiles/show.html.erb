@@ -28,7 +28,6 @@
           <!-- End log out -->
         </div>
         <!-- End Profile buttons -->
-
       </div>
     </div>
   </div>
@@ -58,46 +57,58 @@
           </div>
           <!-- End Profile Card -->
 
-          <!-- Social Profiles -->
+          <!-- Profile informations -->
           <div class="card mb-4">
             <div class="card-header pt-4 pb-3 px-0 mx-4">
-              <h3 class="h6 mb-0">Réseaux sociaux</h3>
+              <h3 class="h6 mb-0">Profil</h3>
             </div>
 
             <div class="card-body pt-3 pb-4 px-4">
-              <!-- Social Profiles -->
-              <a class="media mb-4" href="#">
-                <div class="u-sm-avatar mr-3">
-                  <i class="fab fa-twitter-square"></i>
+              <!-- Profile information -->
+              <div class="media">
+                <span class="fas fa-envelope list-group-icon mr-3"></span>
+                <div class="media-body text-lh-sm">
+                  <span class="d-block mb-1">Email:</span>
+                  <span class="text-secondary"><%= @company_profile.company.email %></span>
                 </div>
-                <div class="media-body">
-                  <span class="d-block text-dark">Twitter</span>
-                  <small class="d-block text-secondary">2.7k followers</small>
-                </div>
-              </a>
-              <!-- End Social Profiles -->
+              </div>
+              <!-- End Profile information -->
 
-              <!-- Social Profiles -->
-              <a class="media" href="#">
-                <div class="u-sm-avatar mr-3">
-                  <i class="fab fa-facebook-square"></i>
+              <!-- Profile information -->
+              <div class="media mt-4">
+                <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
+                <div class="media-body text-lh-sm">
+                  <% if @company_profile.city == nil %>
+                    <span class="d-block mb-1">Ville:</span>
+                    <p>Veuillez <%= link_to "compléter", edit_company_profile_path %> cette information.</p>
+                  <% else %>
+                    <span class="d-block mb-1">Ville : <span class="text-secondary"> <%= @company_profile.city %></span></span>
+                  <% end %>
                 </div>
-                <div class="media-body">
-                  <span class="d-block text-dark">Facebook</span>
-                  <small class="d-block text-secondary">3k followers</small>
+              </div>
+
+              <div class="media mt-4">
+                <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
+                <div class="media-body text-lh-sm">
+                  <% if @company_profile.phone_number == nil %>
+                    <span class="d-block mb-1">Téléphone:</span>
+                    <p>Veuillez <%= link_to "compléter", edit_company_profile_path %> cette information.</p>
+                  <% else %>
+                    <span class="d-block mb-1">Téléphone : <span class="text-secondary"><%= @company_profile.phone_number %></span></span>
+                  <% end %>
                 </div>
-              </a>
-              <!-- End Social Profiles -->
+              </div>
+            <!-- End Profile information -->
             </div>            
           </div>
-          <!-- End Social Profiles -->
+          <!-- End Profile informations -->
           <center>
             <%= link_to "Editer mon profil", edit_company_profile_path %>
           </center>
         </div>
 
+        <!-- Company actions -->
         <div class="col-lg-9">
-       
           <!-- Info -->
           <div class="mb-4">
             <% if @company_profile.name == nil %>
@@ -112,82 +123,26 @@
 
           <hr class="my-7">
 
-          <!-- Icon Blocks -->
-          <div class="row">
-            <div class="col-md-6 col-lg-4">
-              <!-- List Group -->
-              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-envelope list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Email:</span>
-                      <a href="#"><%= @company_profile.company.email %></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Ville:</span>
-                      <a href="#"><%= @company_profile.city %></a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <!-- End List Group -->
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <!-- List Group -->
-              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Téléphone:</span>
-                      <a href="#"><%= @company_profile.phone_number %></a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <!-- End List Group -->
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <!-- List Group -->
-              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Ville:</span>
-                      <a href="#"><%= @company_profile.city %></a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <!-- End List Group -->
-            </div>
-          </div>
-          <!-- End Icon Blocks -->
-          <hr class="my-7">
-            <h2 class="h4">Inviter un salarié : </h2>
-            <p>Inviter un salarié de votre entreprise afin que celui-ci puisse s'inscrire et réserver une séance de massage.</p>
-            <%= form_with(url: "/send_invite_to_employee", method: "patch", local: true) do %>
-            <div class="form-row mb-5">
-              <div class="col-md-4 mb-3">
-                <div class="form-group">
-                  <%= label_tag(:q, "Email:") %>
-                  <%= text_field_tag(:email) %>
-                  <%= submit_tag("Envoyer l'invitation", class: "btn btn-success btn-sm mt-3") %>
-                </div>
+          <!-- Invite employee -->
+          <h2 class="h4">Inviter un salarié : </h2>
+          <p>Inviter un salarié de votre entreprise afin que celui-ci puisse s'inscrire et réserver une séance de massage.</p>
+          <%= form_with(url: "/send_invite_to_employee", method: "patch", local: true) do %>
+            <%= label_tag(:q, "Email:") %>
+            <div class="form-row align-items-center">
+              <div class="col-sm-5 my-1">
+                <label class="sr-only" for="inlineFormInputName">Name</label>
+                <%= text_field_tag(:email, "", class: "form-control") %>
+              </div>
+              <div class="col-auto my-1">
+                <%= submit_tag "Envoyer l'invitation", class: "btn btn-success btn-sm mt-0" %>
               </div>
             </div>
-            <% end %>
+          <% end %>
+          <!-- end invite employee -->
+
           <hr class="my-7">
 
+          <!-- Company events -->
           <h2 class="h4">Mes évènements : </h2>
           <div class="row">
             <% @events.each do |event|%>
@@ -206,8 +161,10 @@
             <% end %>
           </div>
           <hr class="my-7">
+          <!-- End Company events -->
 
         </div>
+        <!-- end company actions -->
       </div>
     </div>
   </div>
