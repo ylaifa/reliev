@@ -43,7 +43,15 @@
                   <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
                     <%= image_tag "company_profile-logo.png", class:"img-fluid rounded-circle ml-2", alt:"Default Company Profile Picture" %>
                   </div>    
-                  <h1 class="h6 font-weight-medium mb-0"><%= @company_profile.name %></h1>
+                  <% if (@company_profile.name == nil) %>
+                    <p>Vous n'avez pas encore précisé le nom de votre entreprise.
+                      <br/>Vous pouvez le faire via la rubrique 
+                      <%= link_to "Editer mon profil", edit_company_profile_path %>
+                    </p>
+                  <% else %>
+                    <h1 class="h6 font-weight-medium mb-0"><%= @company_profile.name %></h1>
+                  <% end %>
+                  </p>
                   <small class="d-block text-muted"><%= @company_profile.business_line %></small>
                 </center>
               </div>
@@ -105,13 +113,7 @@
         <div class="col-lg-9">
           <!-- Info -->
           <div class="mb-4">
-            <% if @company_profile.name == nil %>
-              <p>Vous n'avez pas encore précisé le nom de votre entreprise. <br/>Vous pouvez le faire via la rubrique 
-                <%= link_to "Editer mon profil", edit_company_profile_path %>
-              </p>
-            <% else %>
-              <h4>Espace entreprise</h4>
-            <% end %>
+            <h4>Espace entreprise</h4>
           </div>
           <!-- End Info -->
 
