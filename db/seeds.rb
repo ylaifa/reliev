@@ -8,27 +8,7 @@
 
 require 'faker'
 
-Company.destroy_all
-Employee.destroy_all
 Masseur.destroy_all
-
-Company.skip_callback(:create, :after, :welcome_send)
-5.times do
-  Company.create(
-    email: Faker::Internet.email,
-    password: "azerty"
-  )
-end
-Company.set_callback(:create, :after, :welcome_send)
-
-Employee.skip_callback(:create, :after, :welcome_send)
-30.times do
-  Employee.create(
-    email:    Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 6)
-  )
-end
-Employee.set_callback(:create, :after, :welcome_send)
 
 Masseur.skip_callback(:create, :after, :welcome_send)
 15.times do
@@ -51,8 +31,4 @@ MasseurProfile.all.each do |masseur_profile|
   )
 end
 
-Employee.skip_callback(:create, :after, :welcome_send)
-employee = Employee.invite!({:email => "employee11@yopmail.com'"}, Company.last) do |e|
-  e.skip_invitation = true
-end
-Employee.set_callback(:create, :after, :welcome_send)
+

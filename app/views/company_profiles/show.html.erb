@@ -49,7 +49,7 @@
                   <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
                     <%= image_tag "https://png.pngtree.com/svg/20170307/c02483909c.png", class:"img-fluid rounded-circle ml-2", alt:"Default Company Profile Picture" %>
                   </div>    
-                  <h1 class="h6 font-weight-medium mb-0"><%= @company_profile.name %></h1>
+                  <h1 class="h5 font-weight-medium mb-0 mt-3"><%= @company_profile.name %></h1>
                   <small class="d-block text-muted"><%= @company_profile.business_line %></small>
                 </center>
               </div>
@@ -98,13 +98,13 @@
                   <% end %>
                 </div>
               </div>
+              <div class="mt-3">
+                <%= link_to "Editer mon profil", edit_company_profile_path %>
+              </div>
             <!-- End Profile information -->
             </div>            
           </div>
           <!-- End Profile informations -->
-          <center>
-            <%= link_to "Editer mon profil", edit_company_profile_path %>
-          </center>
         </div>
 
         <!-- Company actions -->
@@ -117,6 +117,8 @@
               </p>
             <% else %>
               <h4>Espace entreprise</h4>
+              <p class="mt-md-5">Pour effectuer une réservation, commencez par choisir le masseur qui vous convient.<p>
+              <%= link_to "Voir nos masseurs", masseur_profiles_path, class: "btn btn-success btn-sm" %>
             <% end %>
           </div>
           <!-- End Info -->
@@ -124,8 +126,8 @@
           <hr class="my-7">
 
           <!-- Invite employee -->
-          <h2 class="h4">Inviter un salarié : </h2>
-          <p>Inviter un salarié de votre entreprise afin que celui-ci puisse s'inscrire et réserver une séance de massage.</p>
+          <h2 class="h4 mb-md-4">Inviter un salarié</h2>
+          <p>Invitez un salarié de votre entreprise afin que celui-ci puisse s'inscrire à l'une de vos réservations.</p>
           <%= form_with(url: "/send_invite_to_employee", method: "patch", local: true) do %>
             <%= label_tag(:q, "Email:") %>
             <div class="form-row align-items-center">
@@ -143,19 +145,19 @@
           <hr class="my-7">
 
           <!-- Company events -->
-          <h2 class="h4">Mes évènements : </h2>
-          <div class="row">
+          <h2 class="h4">Mes réservations</h2>
+          <div class="row mt-md-5">
             <% @events.each do |event|%>
-            <div class="card w-100 mb-3">
+            <div class="card w-100 mb-5">
               <div class="card-body">
-                <h5 class="card-text"><%= event.title %></h5>
-                <blockquote class="blockquote mb-0">
-                <footer class="blockquote-footer">
-                    Nombre de participants maximum : <%= event.maximum_number_of_participation %><br/></p>
-                    <p><small><cite title="Source Title"><%= event.created_at.strftime("A été crée le : %m/%d/%Y") %></cite></small>
-                    <p><%= link_to "Editer mon évènement", edit_company_event_path(@company_profile.company, event), class: "btn btn-primary ml-2" %></p>
-                </footer>
-                </blockquote>
+                <h5 class="card-text mb-3"><%= event.title %></h5>
+                <p>Masseur : <span class="text-dark"><%= MasseurProfile.find(event.masseur).first_name %> <%= MasseurProfile.find(event.masseur).last_name %></span></p>
+                <p>Description : <span class="text-dark"><%= event.description %></span></p>
+                <p>Moment : <span class="text-dark"><%= event.moment %></span></p>
+                <p>Nombre de salariés inscrits : <span class="text-dark"><%= event.participating_employees.count %></span></p>
+                <p class="mb-5">Nombre de participants maximum : <span class="text-dark"><%= event.maximum_number_of_participation %></span><br/></p>
+                <p><%= link_to "Modifier mon évènement", edit_company_event_path(@company_profile.company, event) %>
+                <small class="float-right"><cite title="Source Title"><%= event.created_at.strftime("Evénement crée le : %m/%d/%Y") %></cite></small>
               </div>
             </div>
             <% end %>

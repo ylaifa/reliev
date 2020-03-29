@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
- before_action :authenticate_company!, only: [:new, :create, :edit, :update]
- before_action :only_creator, only: [:edit, :update, :destroy]
+ before_action :authenticate_company!, only: [:new, :create, :edit]
+ before_action :only_creator, only: [:edit, :destroy]
 
   def index
     @events = Event.all
@@ -46,8 +46,9 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-     if @event.update(event_params) 
-      redirect_to company_profile_path(current_company.company_profile), notice: "Votre évènement a bien été modifié."
+    @event.participating_employees << current_employee.email if current_employee
+    if @event.update(event_params) 
+      redirect_to root_path, notice: "Votre demande a été enregistrée."
     else
       render :edit
     end
