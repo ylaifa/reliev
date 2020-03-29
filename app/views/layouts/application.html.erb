@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- Default -->
-    <title>Reliev</title>
+    <title>Reliev | Le bien-être au travail</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta charset="utf-8">
@@ -14,8 +14,12 @@
     <!-- Google Fonts -->
     <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
+    <!-- Small icon -->
+    <%= favicon_link_tag asset_path('icon-reliev-32x32.png') %>
+
     <!-- FontAwesome Script -->
     <script src="https://kit.fontawesome.com/5179dfb87c.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
@@ -23,13 +27,13 @@
       <%= render 'layouts/header' %>
       <div id="content-wrap">
         <% if notice %>
-          <div class="alert alert-success mb-0" role="alert">
-            <span class="container ml-md-8"><%= notice %></span>
+          <div class="alert alert-success text-center alert-dismissible fade show mb-0" id="hide-alert" role="alert">
+            <span class="container ml-md-8 text-center"><%= notice %></span>
           </div>
         <% end %> 
         <% if alert %>
-          <div class="alert alert-danger mb-0" role="alert">
-            <span class="container ml-md-8"><%= alert %></span>
+          <div class="alert alert-danger alert-dismissible alert-dismissible fade show text-center mb-0" id="hide-alert" role="alert">
+            <span class="container ml-md-8 text-center"><%= alert %></span>
           </div>
         <% end %>
         <%= yield %>
