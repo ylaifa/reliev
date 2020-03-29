@@ -22,6 +22,14 @@ class EmployeeProfilesController < ApplicationController
 
   private
 
+  def add_employee_to_event(employee)
+    @event = Event.find(params[:event])
+    if @event.participating_employees.include!(employee)
+      @event.participating_employees << employee
+      redirect_to root_path, notice: "Vous ête bien inscrit à la séance #{@event.title}"
+    end
+  end
+
   def employee_profile_params
     params.require(:employee_profile).permit(:first_name, :last_name)
   end

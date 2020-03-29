@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-     if @event.update(event_params) 
+    if @event.update(event_params) 
       redirect_to company_profile_path(current_company.company_profile), notice: "Votre évènement a bien été modifié."
     else
       render :edit
