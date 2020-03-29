@@ -2,39 +2,32 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
         <br><br><br>
-        <%= form_for @event, url: events_path, method: :post do |f| %>
+        <%= form_for [@company, @event], url: company_events_path(current_company, masseur_profile_id: @masseur), method: :post do |f| %>
         <%= render partial: "layouts/error", locals: { resource: @event } %>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Créer un évènement :</h1>
-            <div class="field">
-                <%= f.label :titre, "Intitulé:" %><br />
-                <%= f.text_field :title, class: "form-control" %>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Créer un évènement avec :<br> <strong><%= full_name(@masseur) %></strong></h1>
+            <div class="field mt-5">
+                <%= f.label :titre, "Intitulé de l'événement*", class:"form-label" %>
+                <%= f.text_field :title, class: "form-control", placeholder: "Titre" %>
             </div> 
-            <div class="field">
-                <%= f.label :description, "Description:" %><br />
-                <%= f.text_area :description, class: "form-control" %>
+            <div class="field mt-5">
+                <%= f.label :description, "Description*", class:"form-label" %>
+                <%= f.text_area :description, class: "form-control", placeholder: "Description (20 caractères minimum)" %>
             </div>
 
-             <div class="field">
-                <%= f.label :nombre_de_participants, "Nombre maximum de participants :" %><br />
-                <%= f.text_field :maximum_number_of_participation, class: "form-control" %>
+             <div class="field mt-5">
+                <%= f.label :nombre_de_participants, "Nombre maximum de participants*", class:"form-label" %>
+                <%= f.text_field :maximum_number_of_participation, class: "form-control", placeholder: "Nombre maximum de participants" %>
             </div>
 
-            <div class="row">
-                <div class="col-sm-3 mb-3">
+            <div class="row mt-5">
+                <div class="col-sm-6 mb-3">
                     <div class="js-form-message">
                     <div class="dropdown">
-                        <button class="btn btn-sm btn-grey transition-3d-hover dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <label id="nameLabel" class="form-label">
-                            Choisissez votre moment :
-                            <span class="text-danger">*</span>
-                        </label>
-                        </button>       
+                        <%= f.label :nombre_de_participants, "Choisissez le créneau désiré*", class:"form-label" %>     
                         <div class="form-group">
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <% MasseurProfile::TIME_SLOTS.each do |time_slot| %>
-                            <p class="dropdown-item">
-                            <%= f.check_box(:moment, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
-                            </p>
+                        <div>
+                            <% @masseur.time_slots.each do |time_slot| %>                        
+                                <%= f.check_box(:moment, {:multiple => true}, time_slot, nil) %> <small><%= time_slot %></small><br>
                             <% end %>
                         </div>
                         </div>
@@ -44,7 +37,28 @@
             </div>
         
             <div class="actions mt-5">
-                <%= f.submit "Créer", class: "btn btn-lg btn-primary btn-block" %>
+            <%= form_tag company_events_path do %>
+                <article>
+                    <% if flash[:error].present? %>
+                    <div id="error_explanation">
+                        <p><%= flash[:error] %></p>
+                    </div>
+                    <% end %>
+                    <label class="amount">
+                    <span>Pix: <%= @masseur.pricing %> €</span>
+                    </label>
+                </article>
+
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                        data-description="Total à payer : <%= @masseur.pricing %> €"
+                        data-amount="<%= @masseur.pricing * 100 %>"
+                        data-locale="auto"
+                        data-email="<%=current_company.email%>"
+                        data-currency="eur"
+                        data-label="Finaliser la réservation"
+                        data-locale="fr"></script>
+            <% end %>
             </div>               
         <% end %>
     </div>
