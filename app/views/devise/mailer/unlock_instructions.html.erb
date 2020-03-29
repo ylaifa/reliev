@@ -1,7 +1,25 @@
-<p>Bonjour <%= @resource.email %> !</p>
+<head>
+  <!-- Google Fonts -->
+  <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <!-- Bootstrap CDN -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
 
-<p>Votre compte a été bloqué pour cause d'un trop grand nombre de tentatives de connexion sans succès.</p>
+<main class="container bg-light pb-4 pt-4">
+  <div class="bg-white ml-4 mr-4 pl-5 pt-5 pb-5">
+    <div class="mb-5 mt-5">
+      <h1>Bonjour <%= @resource.email %> !</h1>
+    </div>
 
-<p>Cliquez sur le lien ci-dessous afin de débloquer votre compte :</p>
+    <div class="ml-3">
+      <p>Votre compte a été bloqué pour cause d'un trop grand nombre de tentatives de connexion sans succès.</p>
+      <p>Cliquez sur le lien ci-dessous afin de débloquer votre compte :</p>
 
-<p><%= link_to 'Débloquer mon compte', unlock_url(@resource, unlock_token: @token) %></p>
+      <p class="ml-5 mb-4 btn btn-primary"><%= link_to 'Débloquer mon compte', unlock_url(@resource, unlock_token: @token) %></p>
+    </div>
+
+    <br/>
+    <p>Cordialement,</p>
+    <p>L'équipe Reliev.</p>
+  </div>
+</main>
