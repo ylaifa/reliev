@@ -28,7 +28,7 @@ en:
       password_change:
         subject: "Password Changed"
     omniauth_callbacks:
-      failure: "Nous n'avons pas pu vous authenitifer du %{kind} pour les raisons suivantes \"%{reason}\"."
+      failure: "Nous n'avons pas pu vous authentifier du %{kind} pour les raisons suivantes \"%{reason}\"."
       success: "Bien authenitifié du compte %{kind}."
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
