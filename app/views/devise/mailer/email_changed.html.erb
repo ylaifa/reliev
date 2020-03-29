@@ -1,7 +1,26 @@
-<p>Hello <%= @email %>!</p>
+<head>
+  <!-- Google Fonts -->
+  <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <!-- Bootstrap CDN -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
-<% end %>
+<main class="container bg-light pb-4 pt-4">
+  <div class="bg-white ml-4 mr-4 pl-5 pt-5 pb-5">
+    <div class="mb-5 mt-5">
+      <h1>Bonjour <%= @resource.email %> !</h1>
+    </div>
+
+    <div class="ml-3">
+      <% if @resource.try(:unconfirmed_email?) %>
+        <p>Nous vous informons que votre email sera remplacé par le suivant : <%= @resource.unconfirmed_email %>.</p>
+      <% else %>
+        <p>Nous vous informons que votre nouvel email est <%= @resource.email %>.</p>
+      <% end %>
+    </div>
+
+    <br/>
+    <p>Cordialement,</p>
+    <p>L'équipe Reliev.</p>
+  </div>
+</main>
