@@ -78,7 +78,7 @@
               <div class="media mt-4">
                 <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
                 <div class="media-body text-lh-sm">
-                  <span class="d-block mb-0">Ville:</span>
+                  <span class="d-block mb-1">Ville:</span>
                   <% if @company_profile.city == nil %>
                     <p>Veuillez <%= link_to "compléter", edit_company_profile_path %> cette information.</p>
                   <% else %>
