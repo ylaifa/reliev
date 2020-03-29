@@ -58,13 +58,4 @@ module MasseurProfilesHelper
     end
   end
   # END MASSAGE TYPES
-
-  # MASSEUR NAME
-  def full_name
-    "#{@masseur_profile.first_name} #{@masseur_profile.last_name}"
-  end
-
-  def name_present?
-
-  end
 end
