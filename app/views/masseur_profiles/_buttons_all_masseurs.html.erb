@@ -1,0 +1,4 @@
+<span> </span>
+<%= form_with url: masseur_profiles_path, method: :get do |f| %>
+  <%= f.submit "Rechercher", class: 'btn btn-sm btn-soft-white transition-3d-hover mr-md-2' %><% if params[:query].present? %> <%= link_to "Voir tous les masseurs", masseur_profiles_path, class:"btn btn-sm btn-soft-white transition-3d-hover mr-md-2", remote: true%><% end %>
+<% end %>
