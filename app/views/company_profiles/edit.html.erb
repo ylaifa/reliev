@@ -63,7 +63,19 @@
 
               <div class="form-group">
                 <%= f.text_field :business_line, class: 'form-control', placeholder: 'Secteur d\'activité', value: @company_profile.business_line %>
-                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="js-form-message">
+              <label id="nameLabel" class="form-label">
+                Numéro de téléphone
+                <span class="text-danger">*</span>
+              </label>
+
+              <div class="form-group">
+                <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Numéro de téléphone', value: @company_profile.phone_number %>
               </div>
             </div>
           </div>
@@ -76,25 +88,13 @@
               </label>
 
               <div class="form-group">
-                <%= f.text_field :city, class: 'form-control', placeholder: 'Ville', value: @company_profile.city %>
-                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
+                <% MasseurProfile::WORKING_PLACES.each do |working_place|%>
+                  <%= f.radio_button :city, working_place, class: "mt-3 mr-2" %> <%= working_place %><br>
+                <% end %>
               </div>
             </div>
           </div>
-
-           <div class="col-sm-6 mb-3">
-            <div class="js-form-message">
-              <label id="nameLabel" class="form-label">
-                Numéro de téléphone
-                <span class="text-danger">*</span>
-              </label>
-
-              <div class="form-group">
-                <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Numéro de téléphone', value: @company_profile.phone_number %>
-                <small class="form-text text-muted">Information affichée sur votre profil public et autres lieux.</small>
-              </div>
-            </div>
-          </div>
+           
           <!-- End Input -->
         </div>
         <%= f.submit "Enregistrer", class: "btn btn-sm btn-primary transition-3d-hover" %>

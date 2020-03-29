@@ -69,7 +69,7 @@
                 <span class="fas fa-envelope list-group-icon mr-3"></span>
                 <div class="media-body text-lh-sm">
                   <span class="d-block mb-1">Email:</span>
-                  <%= @company_profile.company.email %>
+                  <span class="text-secondary"><%= @company_profile.company.email %></span>
                 </div>
               </div>
               <!-- End Profile information -->
@@ -78,23 +78,23 @@
               <div class="media mt-4">
                 <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
                 <div class="media-body text-lh-sm">
-                  <span class="d-block mb-1">Ville:</span>
                   <% if @company_profile.city == nil %>
+                    <span class="d-block mb-1">Ville:</span>
                     <p>Veuillez <%= link_to "compléter", edit_company_profile_path %> cette information.</p>
                   <% else %>
-                    <%= @company_profile.city %>
+                    <span class="d-block mb-1">Ville : <span class="text-secondary"> <%= @company_profile.city %></span></span>
                   <% end %>
                 </div>
               </div>
 
-              <div class="media mt-1">
+              <div class="media mt-4">
                 <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
                 <div class="media-body text-lh-sm">
-                  <span class="d-block mb-1">Téléphone:</span>
                   <% if @company_profile.phone_number == nil %>
+                    <span class="d-block mb-1">Téléphone:</span>
                     <p>Veuillez <%= link_to "compléter", edit_company_profile_path %> cette information.</p>
                   <% else %>
-                    <%= @company_profile.phone_number %></a>
+                    <span class="d-block mb-1">Téléphone : <span class="text-secondary"><%= @company_profile.phone_number %></span></span>
                   <% end %>
                 </div>
               </div>
