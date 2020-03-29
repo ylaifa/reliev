@@ -20,7 +20,7 @@
             </span>
           </p>
           <% if current_company %>
-            <%= link_to "Faire une réservation", new_event_path, class: "btn btn-success btn-sm float-right" %>
+            <%= link_to "Faire une réservation", new_company_event_path(current_company, masseur_profile_id: masseur.id), class: "btn btn-success btn-sm float-right" %>
           <% end %>
         </div>
       </div>
