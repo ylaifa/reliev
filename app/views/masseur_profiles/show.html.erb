@@ -72,6 +72,40 @@
           </div>
           <!-- End Profile Card -->
 
+          <!-- Profile informations -->
+          <div class="card mb-3">
+            <div class="card-header pt-4 pb-3 px-0 mx-4">
+              <h3 class="h6 mb-0">Profil</h3>
+            </div>
+
+            <div class="card-body pt-3 pb-4 px-4">
+              <!-- Profile information -->
+              <div class="media">
+                <span class="fas fa-envelope list-group-icon mr-3"></span>
+                <div class="media-body text-lh-sm">
+                  <span class="d-block mb-1">Email:</span>
+                  <span class="text-secondary"><%= @masseur_profile.masseur.email %></span>
+                </div>
+              </div>
+              <!-- End Profile information -->
+
+              <!-- Profile information -->
+              <div class="media mt-4">
+                <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
+                <div class="media-body text-lh-sm">
+                  <% if @masseur_profile.working_place == nil %>
+                    <span class="d-block mb-0">Ville : </span>
+                    <p>Veuillez <%= link_to "compléter", edit_masseur_profile_path %> cette information.</p>
+                  <% else %>
+                    <span class="d-block mb-0">Ville : <span class="text-secondary"> <%= @masseur_profile.working_place %></span></span>
+                  <% end %>
+                </div>
+              </div>
+            <!-- End Profile information -->
+            </div>            
+          </div>
+          <!-- End Profile informations -->
+
           <!-- Availabilities  -->
           <div class="card mb-4">
             <div class="card-header pt-4 pb-3 px-0 mx-4">
@@ -90,41 +124,11 @@
               <!-- End Availability -->
             </div>
           </div>
-          <!-- End availabilities  -->
+          <!-- End availabilities  -->          
 
-          <!-- Social Profiles -->
-          <div class="card mb-4">
-            <div class="card-header pt-4 pb-3 px-0 mx-4">
-              <h3 class="h6 mb-0">Réseaux sociaux</h3>
-            </div>
-
-            <div class="card-body pt-3 pb-4 px-4">
-              <!-- Social Profiles -->
-              <a class="media mb-4" href="#">
-                <div class="u-sm-avatar mr-3">
-                  <i class="fab fa-twitter-square"></i>
-                </div>
-                <div class="media-body">
-                  <span class="d-block text-dark">Twitter</span>
-                  <small class="d-block text-secondary">2.7k followers</small>
-                </div>
-              </a>
-              <!-- End Social Profiles -->
-
-              <!-- Social Profiles -->
-              <a class="media" href="#">
-                <div class="u-sm-avatar mr-3">
-                  <i class="fab fa-facebook-square"></i>
-                </div>
-                <div class="media-body">
-                  <span class="d-block text-dark">Facebook</span>
-                  <small class="d-block text-secondary">3k followers</small>
-                </div>
-              </a>
-              <!-- End Social Profiles -->
-            </div>
-          </div>
-          <!-- End Social Profiles -->
+          <center class="mb-5">
+            <%= link_to "Modifier mes informations", edit_masseur_profile_path %>
+          </center>
         </div>
 
         <div class="col-lg-9">
@@ -132,236 +136,41 @@
           <div class="mb-4">
             <h2 class="h4">Bonjour <%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %></h2>
             <h1></h1>
-            <h4 class="h6 text-secondary mb-0"><%= @masseur_profile.working_place %></h4>
           </div>
           <!-- End User Details -->
 
           <!-- Info -->
-          <div class="mb-4">
-            <p>Description : <br/><%= @masseur_profile.description %></p>
-            <h6>Tarif :  <span class="badge badge-success ml-1"> <%= @masseur_profile.pricing %> €</span></h6>
-
+          <div class="row mb-4">
+            <div class="col-md-2">
+              <h6>Tarif :  <span class="badge badge-success ml-1"> <%= @masseur_profile.pricing %> €</span></h6>
+            </div>
+            <div class="col-md-8 text-content-justify">
+              <p><span class="h6 text-dark">Description : </span><br/><%= @masseur_profile.description %></p>
+            </div>
           </div>
           <!-- End Info -->
 
           <hr class="my-7">
 
-          <!-- Icon Blocks -->
-          <div class="row">
-            <div class="col-md-6 col-lg-4">
-              <!-- List Group -->
-              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-envelope list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Email:</span>
-                      <a href="#"><%= @masseur_profile.masseur.email %></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-map-marker-alt list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Secteur d'activité :</span>
-                      <a href="#"><%= @masseur_profile.working_place %>, France</a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <!-- End List Group -->
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <!-- List Group -->
-              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-birthday-cake list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Birthday:</span>
-                      <span class="d-block text-muted">May 3, 1986</span>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-mobile-alt list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Phone number:</span>
-                      <a href="#">+336 06 00 00 10</a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <!-- End List Group -->
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <!-- List Group -->
-              <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-globe list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Langues parlées:</span>
-                      <span class="d-block text-muted"><%= ["Français", "Anglais"].sample %></span>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item pt-0 pb-4">
-                  <div class="media">
-                    <span class="fas fa-tags list-group-icon mr-3"></span>
-                    <div class="media-body text-lh-sm">
-                      <span class="d-block mb-1">Type(s) de massage proposés :</span>
-                      <a href="#">
-                        <% @masseur_profile.massage_types.each do |massage_type| %>
-                          <br><%= massage_type %>
-                        <% end %>
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <!-- End List Group -->
-            </div>
-          </div>
-          <!-- End Icon Blocks -->
-
-          <hr class="my-7">
-
           <!-- Title -->
           <div id="reviews" class="mb-3">
-            <h3 class="h4 mb-0">Avis <span class="text-muted font-size-1">(<%= rand(0..400)%>)</span></h3>
+            <h2 class="h4 mb-0">Évènements 
+              <span class="text-muted font-size-1">
+                (quantité) <!-- in erb display masseur events.count in parenthesis (good front) -->
+              </span>
+            </h2>
           </div>
           <!-- End Title -->
 
-          <!-- Reviews -->
-          <div>
-            <!-- Author -->
-            <div class="media mb-3">
+          <hr class="my-7">
 
-              <div class="media-body align-self-center">
-                <h4 class="d-inline-block mb-1">
-                  <a class="d-block h6 mb-0" href="#">Russel Fernandes</a>
-                </h4>
-                <ul class="list-inline text-warning small mb-0">
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star text-warning"></span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="media-body text-right">
-                <small class="d-block text-muted">3 hours ago.</small>
-              </div>
-            </div>
-            <!-- End Author -->
-
-            <p>At the end of the day, it's important to not let being busy distract us from having fun. Smiling, laughing, and hanging helps us work together to achieve this.</p>
-
-            <!-- Likes/Reply -->
-            <ul class="list-inline d-flex">
-              <li class="list-inline-item">
-                <a class="text-secondary" href="#">
-                  17
-                  <span class="far fa-thumbs-up ml-1"></span>
-                </a>
-              </li>
-              <li class="list-inline-item ml-3">
-                <a class="text-secondary" href="#">
-                  0
-                  <span class="far fa-thumbs-down ml-1"></span>
-                </a>
-              </li>
-              <li class="list-inline-item ml-auto">
-                <a class="text-secondary" href="#">
-                  <span class="far fa-comments mr-1"></span>
-                  Reply
-                </a>
-              </li>
-            </ul>
-            <!-- End Likes/Reply -->
-          </div>
-          <!-- End Reviews -->
+          <p>évènement</p>
 
           <hr class="my-7">
 
-          <!-- Reviews -->
-          <div class="mb-7">
-            <!-- Author -->
-            <div class="media mb-3">
+          <p>évènement</p>
 
-              <div class="media-body align-self-center">
-                <h4 class="d-inline-block mb-1">
-                  <a class="d-block h6 mb-0" href="#">Elizabeth Lord</a>
-                </h4>
-                <ul class="list-inline text-warning small mb-0">
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="fas fa-star"></span>
-                  </li>
-                  <li class="list-inline-item mx-0">
-                    <span class="far fa-star text-warning"></span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="media-body text-right">
-                <small class="d-block text-muted">1 day ago.</small>
-              </div>
-            </div>
-            <!-- End Author -->
-
-            <p>It's important to stay detail oriented with every project we tackle. Staying focused allows us to turn every project we complete into something we love. We strive to embrace and drive change in our industry which allows us to keep our clients relevant and ready to adapt.</p>
-
-            <!-- Likes/Reply -->
-            <ul class="list-inline d-flex">
-              <li class="list-inline-item">
-                <a class="text-secondary" href="#">
-                  17
-                  <span class="far fa-thumbs-up ml-1"></span>
-                </a>
-              </li>
-              <li class="list-inline-item ml-3">
-                <a class="text-secondary" href="#">
-                  0
-                  <span class="far fa-thumbs-down ml-1"></span>
-                </a>
-              </li>
-              <li class="list-inline-item ml-auto">
-                <a class="text-secondary" href="#">
-                  <span class="far fa-comments mr-1"></span>
-                  Reply
-                </a>
-              </li>
-            </ul>
-            <!-- End Likes/Reply -->
-          </div>
-          <!-- End Reviews -->
-
-          <a class="btn btn-block btn-soft-primary transition-3d-hover" href="#">See More</a>
+          <hr class="my-7">
         </div>
       </div>
     </div>
