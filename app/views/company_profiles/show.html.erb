@@ -130,11 +130,10 @@
           <h2 class="h4 mb-md-4">Inviter un salarié</h2>
           <p>Invitez un salarié de votre entreprise afin que celui-ci puisse s'inscrire à l'une de vos réservations.</p>
           <%= form_with(url: "/send_invite_to_employee", method: "patch", local: true) do %>
-            <%= label_tag(:q, "Email:") %>
             <div class="form-row align-items-center">
               <div class="col-sm-5 my-1">
                 <label class="sr-only" for="inlineFormInputName">Name</label>
-                <%= text_field_tag(:email, "", class: "form-control") %>
+                <%= text_field_tag(:email, "", class: "form-control", placeholder: "e-mail") %>
               </div>
               <div class="col-auto my-1">
                 <%= submit_tag "Envoyer l'invitation", class: "btn btn-success btn-sm mt-0" %>
