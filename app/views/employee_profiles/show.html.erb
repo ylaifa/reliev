@@ -105,10 +105,6 @@
 
           <hr class="my-7">
 
-          <h2 class="h4">Mes évènements : </h2>
-
-          <hr class="my-7">
-
           <h2 class="h4">Les réservations de mon entreprise :</h2>
             <% if @employee_profile.employee.company.events == nil %>
               <p>Votre entreprise n'a aucune réservtation de prévue pour le moment.</p>
@@ -124,10 +120,10 @@
                 <p>Nombre de salariés inscrits : <span class="text-dark"><%= event.participating_employees.count %></span></p>
                 <p class="mb-5">Nombre de participants maximum : <span class="text-dark"><%= event.maximum_number_of_participation %></span><br/></p>
                 <center>
-                  <%if event.participating_employees.count < event.maximum_number_of_participation%>
-                    <%= link_to "S'inscrire", url: "/send_invite_to_employee", method: "patch", event: event, class: "btn btn-success" %>
-                  <%elsif event.participating_employees.include?(@employee_profile)%>
-                    <p>Vous êtes déjà inscrit.</p>
+                  <%if event.participating_employees.count < event.maximum_number_of_participation && event.participating_employees.exclude?(@employee_profile.employee.email) %>
+                    <%= link_to "Participer à l'évènement", company_event_path(current_employee.company, event, event: {title: event.title, description: event.description, maximum_number_of_participation: event.maximum_number_of_participation, moment: event.moment}), method: :put, class: "btn btn-success" %>
+                  <% elsif event.participating_employees.include?(@employee_profile.employee.email)%>
+                    <p class="text-info">Vous êtes inscrit.</p>
                   <%else%>
                     <p class="text-danger">- Cet événement est complet. -</p>
                   <%end%>
