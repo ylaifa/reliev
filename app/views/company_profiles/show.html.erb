@@ -112,9 +112,6 @@
         <div class="col-lg-9">
           <!-- Info -->
           <div class="mb-4">
-<<<<<<< HEAD
-            <h4>Espace entreprise</h4>
-=======
             <% if @company_profile.name == nil %>
               <p>Vous n'avez pas encore précisé le nom de votre entreprise. <br/>Vous pouvez le faire via la rubrique 
                 <%= link_to "Editer mon profil", edit_company_profile_path %>
@@ -124,7 +121,6 @@
               <p class="mt-md-5">Pour effectuer une réservation, commencez par choisir le masseur qui vous convient.<p>
               <%= link_to "Voir nos masseurs", masseur_profiles_path, class: "btn btn-success btn-sm" %>
             <% end %>
->>>>>>> master
           </div>
           <!-- End Info -->
 
