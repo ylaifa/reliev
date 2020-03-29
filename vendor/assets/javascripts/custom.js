@@ -69,3 +69,10 @@ document.addEventListener("turbolinks:load", function() {
 $(document).ready(function(){
   $('.dropdown-toggle').dropdown()
 });
+
+// Alert timer disapear
+var delayInMilliseconds = 3000;
+setTimeout(function() {
+  let alert = document.getElementById("hide-alert");
+  alert.remove()
+}, delayInMilliseconds);

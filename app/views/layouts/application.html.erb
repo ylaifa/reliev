@@ -27,7 +27,7 @@
       <%= render 'layouts/header' %>
       <div id="content-wrap">
         <% if notice %>
-          <div class="alert alert-success text-center alert-dismissible fade show mb-0" role="alert">
+          <div class="alert alert-success text-center alert-dismissible fade show mb-0" id="hide-alert" role="alert">
             <span class="container ml-md-8 text-center"><%= notice %></span>
             <button type="button" class="close mr-md-6" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -35,7 +35,7 @@
           </div>
         <% end %> 
         <% if alert %>
-          <div class="alert alert-danger alert-dismissible alert-dismissible fade show text-center mb-0" role="alert">
+          <div class="alert alert-danger alert-dismissible alert-dismissible fade show text-center mb-0" id="hide-alert" role="alert">
             <span class="container ml-md-8 text-center"><%= alert %></span>
             <button type="button" class="close mr-md-6" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
