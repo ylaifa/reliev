@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources  :search, only: [:index]
 
   patch 'send_invite_to_employee', to: 'company_profiles#send_invite_to_employee'
+  patch 'add_employee_to_event', to: 'employee_profiles#add_employee_to_event'
 
   get 'about',   to: 'static_pages#about'
   get 'contact', to: 'static_pages#contact'
