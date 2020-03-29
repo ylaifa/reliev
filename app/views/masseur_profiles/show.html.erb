@@ -34,39 +34,38 @@
           <div class="card p-1 mb-4">
             <div class="card-body text-center">
               <div class="mb-3">
-              </div>
-
-              <div class="mb-3">
                 <% if (@masseur_profile.first_name == nil) || (@masseur_profile.last_name == nil) || (@masseur_profile.description == nil) || (@masseur_profile.working_place == nil) || (@masseur_profile.massage_types == nil) || (@masseur_profile.time_slots == nil) || (@masseur_profile.pricing == nil) %>
-                <p>Vous n'avez pas encore précisé votre nom. <br/>Vous pouvez le faire via la rubrique 
-                  <%= link_to "Editer mon profil", edit_masseur_profile_path %>
-                </p>
-              <% else %>
-                <h1 class="h6 font-weight-medium mb-0"><%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %></h1>
-                <small class="d-block text-muted">
-                  <!-- Masseur has multiple massage types -->
-                  <% if current_masseur.masseur_profile.massage_types.count > 1 %>
-                    <span>Massages : </span>
-                    <% current_masseur.masseur_profile.massage_types.each do |massage_type| %>
-                      <% if massage_type == current_masseur.masseur_profile.massage_types.last %>
-                        <span><%= massage_type %></span>
+                  <p>Vous n'avez pas encore précisé votre nom. <br/>Vous pouvez le faire via la rubrique 
+                    <%= link_to "Editer mon profil", edit_masseur_profile_path %>
+                  </p>
+                <% else %>
+                  <div class="mt-3">
+                    <h1 class="h6 font-weight-medium"><%= @masseur_profile.first_name %> <%= @masseur_profile.last_name %></h1>
+                    <small class="d-block text-muted">
+                      <!-- Masseur has multiple massage types -->
+                      <% if current_masseur.masseur_profile.massage_types.count > 1 %>
+                        <span>Massages : </span>
+                        <% current_masseur.masseur_profile.massage_types.each do |massage_type| %>
+                          <% if massage_type == current_masseur.masseur_profile.massage_types.last %>
+                            <span><%= massage_type %></span>
+                          <% else %>
+                            <span><%= massage_type %>, </span>                      
+                          <% end %>
+                        <% end %>
+
+                      <!-- Masseur has one massage type -->
+                      <% elsif masseur_profile.massage_types.count == 1 %>
+                        <% current_masseur.masseur_profile.massage_types.each do |massage_type| %>
+                          <span><%= massage_type %> </span>
+                        <% end %>
+
+                      <!-- Masseur has no massage type -->
                       <% else %>
-                        <span><%= massage_type %>, </span>                      
+                        <p>Veuillez <%= link_to "compléter", edit_masseur_profile_path %> cette information.</p>
                       <% end %>
-                    <% end %>
-
-                  <!-- Masseur has one massage type -->
-                  <% elsif masseur_profile.massage_types.count == 1 %>
-                    <% current_masseur.masseur_profile.massage_types.each do |massage_type| %>
-                      <span><%= massage_type %> </span>
-                    <% end %>
-
-                  <!-- Masseur has no massage type -->
-                  <% else %>
-                    <p>Veuillez <%= link_to "compléter", edit_masseur_profile_path %> cette information.</p>
-                  <% end %>
-                </small>
-              <% end %>
+                    </small>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
