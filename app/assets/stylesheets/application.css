@@ -19,7 +19,7 @@
  *= require theme.css
  *= require main.css
  *= require footer.css
- *= require jumbotron.css
+ *= require jumbotron.css.erb
  *= require card.css
  *= require masseur_card.css
  *= require masseur_panel.css
