@@ -21,7 +21,7 @@ en:
         hello: "Bonjour %{email}"
         someone_invited_you: "Votre entreprise vous à invité sur l'appplication Reliev. Pour accepter l'invitation, veuillez cliquer sur le lien suivant : %{url} puis complétez votre profil pour finaliser votre inscription."
         accept: "Accepter l'invitation"
-        accept_until: "Cette invitation sera due le %{due_date}."
+        accept_until: "Cette invitation prendra effet le %{due_date}."
         ignore: "Si vous ne voulez pas accepter l'invitation, veuillez ignorer cet email. Votre compte ne sera pas créé tant que vous ne vous rendez pas au lien ci-présent, et que vous n'editez pas votre mot de passe."
   time:
     formats:
