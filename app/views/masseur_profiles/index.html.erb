@@ -12,7 +12,7 @@
                 <%= link_to "Accueil", root_path, class: "breadcrumb-link" %>
               </li>
               <li class="breadcrumb-item">
-                <%= link_to "Voir les masseurs", masseur_profiles_path, class: "breadcrumb-link" %>
+                <span class="breadcrumb-link">Voir les masseurs</span>
               </li>
             </ol>
             <!-- End Breadcrumb -->
@@ -41,9 +41,9 @@
                   <!-- Massage types selection -->
                   <li>
                     <div class="dropdown">
-                      <a class="btn dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="btn dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Type(s) de massage(s)
-                      </a>
+                      </span>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <% MasseurProfile::MASSAGE_TYPES.each do |massage_type| %>
                             <p class="dropdown-item">
@@ -59,9 +59,9 @@
                   <!-- Massage place selection -->
                   <li>
                     <div class="dropdown">
-                      <a class="btn dropdown-toggle text-light mr-md-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="btn dropdown-toggle text-light mr-md-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Ville
-                      </a>
+                      </span>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <% MasseurProfile::WORKING_PLACES.each do |working_place| %>
                           <p class="dropdown-item">
