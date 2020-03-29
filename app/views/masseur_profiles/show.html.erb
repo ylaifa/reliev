@@ -104,11 +104,9 @@
             <div class="card-body pt-3 pb-4 px-4">
               <!-- Availability -->
               <% @masseur_profile.time_slots.each do |time_slot| %>
-                <a class="d-flex align-items-start mb-4" href="#">
-                  <div class="ml-3">
+                  <div class="ml-3 mb-4 mt-2">
                     <span class="d-block text-dark"><%= time_slot %></span>
                   </div>
-                </a>
               <% end %>
               <!-- End Availability -->
             </div>
