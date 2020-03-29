@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour <%= full_name(@masseur) %> !</h1>
+    <p>
+      Vous avez une nouvelle réservation :
+    </p>
+    <p>
+      Pour la consulter, rendez-vous sur <%= link_to "Votre espace masseur", @url %>.
+    </p>
+    <p> À très vite sur Reliev !</p>
+  </body>
+</html>

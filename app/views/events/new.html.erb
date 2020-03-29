@@ -42,7 +42,28 @@
             </div>
         
             <div class="actions mt-5">
-                <%= f.submit "Créer", class: "btn btn-lg btn-primary btn-block" %>
+            <%= form_tag company_events_path do %>
+                <article>
+                    <% if flash[:error].present? %>
+                    <div id="error_explanation">
+                        <p><%= flash[:error] %></p>
+                    </div>
+                    <% end %>
+                    <label class="amount">
+                    <span>Pix: <%= @masseur.pricing %> €</span>
+                    </label>
+                </article>
+
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                        data-description="Total à payer : <%= @masseur.pricing %> €"
+                        data-amount="<%= @masseur.pricing * 100 %>"
+                        data-locale="auto"
+                        data-email="<%=current_company.email%>"
+                        data-currency="eur"
+                        data-label="Finaliser la réservation"
+                        data-locale="fr"></script>
+            <% end %>
             </div>               
         <% end %>
     </div>
