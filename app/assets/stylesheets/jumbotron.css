@@ -4,13 +4,13 @@
   background-size: cover;
 }
 .jumbo1{
-  background-image: url('jumbo1-bg.png');
+  background-image: url(<%= asset_path 'jumbo1-bg.png' %>);
 }
 .jumbo2{
-  background-image: url('jumbo2-bg.png');
+  background-image: url(<%= asset_path 'jumbo2-bg.png' %>);
 }
 .jumbo3{
-  background-image: url('welcome_page-bg.png');
+  background-image: url(<%= asset_path 'welcome_page-bg.png' %>);
 }
 
 
