@@ -34,6 +34,11 @@
           <div class="card p-1 mb-4">
             <div class="card-body text-center">
               <div class="mb-3">
+                <center class="mb-3">
+                  <div class="u-lg-avatar position-relative mb-sm-0 mb-3">
+                    <%= image_tag "https://www.kbl.co.uk/wp-content/uploads/2017/11/Default-Profile-Male.jpg", class:"img-fluid rounded-circle ml-2 mx-auto d-block", alt:"Default Employee Profile Picture" %>
+                  </div> 
+                </center>
                 <!-- Masseur Profile not complete -->
                 <% if name_empty? %>
                   <p>Vous n'avez pas encore précisé votre nom.
@@ -72,7 +77,7 @@
               <div class="media">
                 <span class="fas fa-envelope list-group-icon mr-3"></span>
                 <div class="media-body text-lh-sm">
-                  <span class="d-block mb-1">Email:</span>
+                  <span class="d-block mb-1">Email :</span>
                   <span class="text-secondary"><%= @masseur_profile.masseur.email %></span>
                 </div>
               </div>
@@ -141,23 +146,32 @@
 
           <!-- Title -->
           <div id="reviews" class="mb-3">
-            <h2 class="h4 mb-0">Évènements 
+            <h2 class="h4 mb-0">Mes réservations 
               <span class="text-muted font-size-1">
-                (quantité) <!-- in erb display masseur events.count in parenthesis (good front) -->
+                (<%= @events.count %>) <!-- in erb display masseur events.count in parenthesis (good front) -->
               </span>
             </h2>
+            <div class="row mt-md-5">
+              <% if @events.any? %>
+                <% @events.each do |event|%>
+                  <div class="card w-100 mb-5">
+                    <div class="card-body">
+                      <h5 class="card-text mb-3"><%= event.title %></h5>
+                      <p>Masseur : <span class="text-dark"><%= MasseurProfile.find(event.masseur).first_name %> <%= MasseurProfile.find(event.masseur).last_name %></span></p>
+                      <p>Description : <span class="text-dark"><%= event.description %></span></p>
+                      <p>Moment : <span class="text-dark"><%= event.moment %></span></p>
+                      <p>Nombre de salariés inscrits : <span class="text-dark"><%= event.participating_employees.count %></span></p>
+                      <p class="mb-5">Nombre de participants maximum : <span class="text-dark"><%= event.maximum_number_of_participation %></span><br/></p>
+                      <small class="float-right"><cite title="Source Title"><%= event.created_at.strftime("Evénement crée le : %m/%d/%Y") %></cite></small>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <p class="ml-md-3">Vous n'avez aucune réservation de prévue pour le moment.</p>
+              <% end %>
+            </div>
           </div>
           <!-- End Title -->
-
-          <hr class="my-7">
-
-          <p>évènement</p>
-
-          <hr class="my-7">
-
-          <p>évènement</p>
-
-          <hr class="my-7">
         </div>
       </div>
     </div>

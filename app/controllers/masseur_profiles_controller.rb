@@ -12,6 +12,7 @@ class MasseurProfilesController < ApplicationController
 
   def show
     @masseur_profile = MasseurProfile.find(params[:id])
+    @events = Event.where(masseur: @masseur_profile)
   end
 
   def edit
