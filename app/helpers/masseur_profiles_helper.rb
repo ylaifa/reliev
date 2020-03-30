@@ -54,7 +54,7 @@ module MasseurProfilesHelper
     if has_one_type
       "Type de massage proposé : #{massages_string}"
     else
-      "Types de massage proposés :\n#{massages_string}"
+      "Types de massages proposés :\n#{massages_string}"
     end
   end
   # END MASSAGE TYPES
