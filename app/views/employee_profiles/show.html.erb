@@ -123,7 +123,7 @@
                   <%if event.participating_employees.count < event.maximum_number_of_participation && event.participating_employees.exclude?(@employee_profile.employee.email) %>
                     <%= link_to "Participer à l'évènement", company_event_path(current_employee.company, event, event: {title: event.title, description: event.description, maximum_number_of_participation: event.maximum_number_of_participation, moment: event.moment}), method: :put, class: "btn btn-success" %>
                   <% elsif event.participating_employees.include?(@employee_profile.employee.email)%>
-                    <p class="text-info">Vous êtes inscrit.</p>
+                    <p class="text-success">Vous êtes inscrit.</p>
                   <%else%>
                     <p class="text-danger">- Cet événement est complet. -</p>
                   <%end%>
