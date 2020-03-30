@@ -141,23 +141,32 @@
 
           <!-- Title -->
           <div id="reviews" class="mb-3">
-            <h2 class="h4 mb-0">Évènements 
+            <h2 class="h4 mb-0">Mes réservations 
               <span class="text-muted font-size-1">
-                (quantité) <!-- in erb display masseur events.count in parenthesis (good front) -->
+                (<%= @events.count %>) <!-- in erb display masseur events.count in parenthesis (good front) -->
               </span>
             </h2>
+            <div class="row mt-md-5">
+              <% if @events.any? %>
+                <% @events.each do |event|%>
+                  <div class="card w-100 mb-5">
+                    <div class="card-body">
+                      <h5 class="card-text mb-3"><%= event.title %></h5>
+                      <p>Masseur : <span class="text-dark"><%= MasseurProfile.find(event.masseur).first_name %> <%= MasseurProfile.find(event.masseur).last_name %></span></p>
+                      <p>Description : <span class="text-dark"><%= event.description %></span></p>
+                      <p>Moment : <span class="text-dark"><%= event.moment %></span></p>
+                      <p>Nombre de salariés inscrits : <span class="text-dark"><%= event.participating_employees.count %></span></p>
+                      <p class="mb-5">Nombre de participants maximum : <span class="text-dark"><%= event.maximum_number_of_participation %></span><br/></p>
+                      <small class="float-right"><cite title="Source Title"><%= event.created_at.strftime("Evénement crée le : %m/%d/%Y") %></cite></small>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <p class="ml-md-3">Vous n'avez aucune réservation de prévue pour le moment.</p>
+              <% end %>
+            </div>
           </div>
           <!-- End Title -->
-
-          <hr class="my-7">
-
-          <p>évènement</p>
-
-          <hr class="my-7">
-
-          <p>évènement</p>
-
-          <hr class="my-7">
         </div>
       </div>
     </div>
