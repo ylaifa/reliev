@@ -109,18 +109,15 @@
             <div class="card-body pt-3 pb-4 px-4">
               <!-- Availability -->
               <% @masseur_profile.time_slots.each do |time_slot| %>
-                  <div class="ml-3 mb-4 mt-2">
+                  <div class=" mb-4 mt-2">
                     <span class="d-block text-dark"><%= time_slot %></span>
                   </div>
               <% end %>
               <!-- End Availability -->
             </div>
+            <%= link_to "Modifier mes informations", edit_masseur_profile_path, class:"text-center mb-5" %>
           </div>
           <!-- End availabilities  -->          
-
-          <center class="mb-5">
-            <%= link_to "Modifier mes informations", edit_masseur_profile_path %>
-          </center>
         </div>
 
         <div class="col-lg-9">
@@ -157,7 +154,7 @@
                   <div class="card w-100 mb-5">
                     <div class="card-body">
                       <h5 class="card-text mb-3"><%= event.title %></h5>
-                      <p>Masseur : <span class="text-dark"><%= MasseurProfile.find(event.masseur).first_name %> <%= MasseurProfile.find(event.masseur).last_name %></span></p>
+                      <p>Entreprise : <span class="text-dark"><%= event.company.company_profile.name %></span></p>
                       <p>Description : <span class="text-dark"><%= event.description %></span></p>
                       <p>Moment : <span class="text-dark"><%= event.moment %></span></p>
                       <p>Nombre de salariés inscrits : <span class="text-dark"><%= event.participating_employees.count %></span></p>
