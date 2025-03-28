@@ -13,5 +13,16 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.paths << Rails.root.join("vendor", "assets", "stylesheets")
-Rails.application.config.assets.paths << Rails.root.join("vendor", "assets", "javascripts")
+Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'stylesheets')
+Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts')
+
+# Enable the asset pipeline
+Rails.application.config.assets.enabled = true
+
+Rails.application.config.assets.precompile += %w[bootstrap.min.js popper.js]
+
+# Configure Sprockets
+Rails.application.config.assets.configure do |env|
+  env.register_mime_type 'text/scss', extensions: ['.scss']
+  env.register_preprocessor 'text/scss', Sprockets::ScssProcessor
+end
