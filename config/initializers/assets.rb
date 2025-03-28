@@ -21,6 +21,9 @@ Rails.application.config.assets.enabled = true
 
 Rails.application.config.assets.precompile += %w[bootstrap.min.js popper.js]
 
+# Precompile additional assets
+Rails.application.config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif *.svg]
+
 # Configure Sprockets
 Rails.application.config.assets.configure do |env|
   env.register_mime_type 'text/scss', extensions: ['.scss']

@@ -27,7 +27,7 @@ gem 'turbo-rails'
 
 # CSS Framework
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 
 # Authentication

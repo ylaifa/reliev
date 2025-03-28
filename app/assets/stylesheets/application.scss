@@ -1,5 +1,4 @@
-// Import Bootstrap
-@import "bootstrap-sprockets";
+// Import Bootstrap 5
 @import "bootstrap";
 
 // Import custom styles
@@ -7,4 +6,39 @@
 @import "proposition";
 @import "functionnment";
 @import "services";
-@import "testimonial"; 
+@import "testimonial";
+@import "footer";
+@import "main";
+@import "masseur_card";
+@import "masseur_panel";
+@import "card";
+@import "welcome";
+@import "company_profiles";
+@import "employee_profiles";
+@import "events";
+
+// Global styles
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+// Utility classes
+.w-md-60 {
+  width: 60%;
+}
+
+.w-lg-50 {
+  width: 50%;
+}
+
+.mb-7 {
+  margin-bottom: 7rem;
+} 
