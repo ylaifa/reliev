@@ -2,6 +2,7 @@
 @import "bootstrap";
 
 // Import custom styles
+@import "images";
 @import "jumbotron";
 @import "proposition";
 @import "functionnment";
@@ -37,6 +38,10 @@ body {
 
 .w-lg-50 {
   width: 50%;
+}
+
+.w-20 {
+  width: 20%;
 }
 
 .mb-7 {

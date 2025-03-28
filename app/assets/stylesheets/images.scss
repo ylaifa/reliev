@@ -1,0 +1,73 @@
+// Image styles
+.img-hover-zoom {
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.img-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.img-profile {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.img-testimonial {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.img-feature {
+  border-radius: 10px;
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+
+// Responsive image containers
+.img-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  
+  &.img-container-lg {
+    min-height: 400px;
+  }
+  
+  &.img-container-md {
+    min-height: 300px;
+  }
+  
+  &.img-container-sm {
+    min-height: 200px;
+  }
+}
+
+// Image animations
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.img-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+// Image placeholders
+.img-placeholder {
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dee2e6;
+  font-size: 1.5rem;
+}

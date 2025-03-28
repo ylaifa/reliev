@@ -41,7 +41,7 @@
               <div class="mb-3">
                 <center>
                   <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
-                    <%= image_tag "company_profile-logo.png", class:"img-fluid rounded-circle ml-2", alt:"Default Company Profile Picture" %>
+                    <%= image_tag "company_profile-logo.png", class:"img-fluid rounded-circle ml-2", alt:"Default Company Profile Picture", loading: "lazy" %>
                   </div>    
                   <% if (@company_profile.name == nil) %>
                     <p>Vous n'avez pas encore précisé le nom de votre entreprise.
